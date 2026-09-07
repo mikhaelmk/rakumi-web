@@ -1,4 +1,4 @@
-# Rakumi Website — V3
+# Rakumi Website 
 
 Versão refinada do site Rakumi.
 
