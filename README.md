@@ -1,4 +1,4 @@
-# Rakumi Website 
+# Rakumi Website — V3
 
 Versão refinada do site Rakumi.
 
@@ -28,3 +28,13 @@ Versão refinada do site Rakumi.
 - `assets/rakumi-moon.png`
 
 Abra `index.html` após extrair o ZIP.
+
+
+## v1.0.1 — Mobile fix
+
+- Corrigido um bloco CSS duplicado dentro do breakpoint de 620 px.
+- A seção About agora usa uma única coluna real no celular.
+- Títulos e parágrafos deixaram de quebrar palavra por palavra.
+- Mapa orbital foi redimensionado e reposicionado para telas estreitas.
+- Hero e mascote receberam tamanhos mobile mais equilibrados.
+- Cards, Currently Building, timeline e footer receberam pequenos ajustes responsivos.
