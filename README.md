@@ -1,24 +1,18 @@
-# Rakumi Website — V3
+# Rakumi Website — V4
 
-Versão refinada do site Rakumi.
+Versão V4 refinada do site Rakumi.
 
-## Alterações desta versão
+## Alterações
 
-- Projeto de código renomeado para **Ordo**.
-- `Currently Building` agora aponta para **Ordo** e para o marco `v0.1 — create & list tasks`.
-- Projeto literário aparece como **Untitled Station Novel** enquanto não houver título final.
-- Canal aparece como **Rakumi Channel**.
-- Mantidos os links reais:
-  - GitHub: `https://github.com/rakumidev`
-  - YouTube: `https://www.youtube.com/@43KUM1`
-- Adicionados microelementos visuais coerentes com a identidade:
-  - status/sinal no hero;
-  - mapa orbital em CSS para os três pilares;
-  - pequenas marcações de terminal;
-  - trilha visual do ciclo `commit → test → release`;
-  - detalhes discretos nos cards;
-  - assinatura lunar na timeline.
-- Nenhuma biblioteca ou framework novo foi adicionado.
+- Interface bilíngue EN / PT, com preferência salva em `localStorage`.
+- Favicon minimalista recortado do próprio asset sheet Rakumi.
+- Órbita editorial recortada da referência visual original e usada como imagem real no layout.
+- Tipografia atualizada:
+  - **Michroma** para identidade e títulos;
+  - **Space Grotesk** para leitura e interface;
+  - **JetBrains Mono** para detalhes técnicos.
+- Sistema de ícones celestes mantido para elementos menores da interface.
+- Mantidos HTML, CSS e JavaScript puros, sem frameworks.
 
 ## Estrutura
 
@@ -26,15 +20,9 @@ Versão refinada do site Rakumi.
 - `style.css`
 - `script.js`
 - `assets/rakumi-moon.png`
+- `assets/orbital-chart.png`
+- `assets/favicon.png`
 
-Abra `index.html` após extrair o ZIP.
+## Deploy
 
-
-## v1.0.1 — Mobile fix
-
-- Corrigido um bloco CSS duplicado dentro do breakpoint de 620 px.
-- A seção About agora usa uma única coluna real no celular.
-- Títulos e parágrafos deixaram de quebrar palavra por palavra.
-- Mapa orbital foi redimensionado e reposicionado para telas estreitas.
-- Hero e mascote receberam tamanhos mobile mais equilibrados.
-- Cards, Currently Building, timeline e footer receberam pequenos ajustes responsivos.
+Envie os arquivos para o repositório `rakumidev/rakumi-web`, substituindo os arquivos de mesmo nome. O Cloudflare pode continuar usando o fluxo automático GitHub → deploy.
