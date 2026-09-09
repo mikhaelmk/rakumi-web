@@ -386,7 +386,7 @@ if (orbitSystem) {
     previewPointer = { x: point.x, y: point.y };
     previewing = true;
     stage.classList.add("is-pointing");
-    applyStageTransform(previewPointer, 0.28);
+    applyStageTransform(previewPointer, 0.58);
   });
 
   stage.addEventListener("pointerleave", () => {
@@ -396,7 +396,7 @@ if (orbitSystem) {
   });
 
   stage.addEventListener("pointerdown", (event) => {
-    if (reduceMotion) return;
+    if (reduceMotion || event.target.closest("[data-orbit-mode]")) return;
     const point = pointerRatio(event);
     lockedPointer = { x: point.x, y: point.y };
     previewPointer = lockedPointer;

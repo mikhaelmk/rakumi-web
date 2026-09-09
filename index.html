@@ -191,8 +191,8 @@
         aria-label="The three Rakumi project paths"
         data-i18n-aria-label="about.orbitAria"
       >
-        <div class="orbit-stage" data-orbit-stage aria-hidden="true">
-          <svg class="orbit-system" viewBox="0 0 620 420" role="presentation">
+        <div class="orbit-stage" data-orbit-stage>
+          <svg class="orbit-system" viewBox="0 0 620 420" aria-hidden="true" focusable="false">
             <g class="orbit-reference">
               <path d="M310 55v20M310 345v20M82 210h20M518 210h20" />
               <circle cx="310" cy="210" r="3" />
@@ -222,19 +222,19 @@
             </g>
           </svg>
 
-          <span class="orbit-click-marker" data-orbit-marker></span>
-        </div>
+          <div class="orbit-mode-switcher" role="group" aria-label="Orbit mode">
+            <button class="orbit-mode-button orbit-mode-ordo" type="button" data-orbit-mode="ordo" aria-pressed="false">
+              <b>01</b><span>ORDO</span>
+            </button>
+            <button class="orbit-mode-button orbit-mode-station" type="button" data-orbit-mode="station" aria-pressed="false">
+              <b>02</b><span>STATION</span>
+            </button>
+            <button class="orbit-mode-button orbit-mode-rakumi is-active" type="button" data-orbit-mode="rakumi" aria-pressed="true">
+              <b>03</b><span>RAKUMI</span>
+            </button>
+          </div>
 
-        <div class="orbit-legend orbit-mode-switcher" role="group" aria-label="Orbit mode">
-          <button class="orbit-mode-button" type="button" data-orbit-mode="ordo" aria-pressed="false">
-            <b>01</b><span>ORDO</span>
-          </button>
-          <button class="orbit-mode-button" type="button" data-orbit-mode="station" aria-pressed="false">
-            <b>02</b><span>STATION</span>
-          </button>
-          <button class="orbit-mode-button is-active" type="button" data-orbit-mode="rakumi" aria-pressed="true">
-            <b>03</b><span>RAKUMI</span>
-          </button>
+          <span class="orbit-click-marker" data-orbit-marker aria-hidden="true"></span>
         </div>
       </div>
     </section>

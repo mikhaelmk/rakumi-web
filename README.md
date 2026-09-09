@@ -26,3 +26,11 @@ Versão V4 refinada do site Rakumi.
 ## Deploy
 
 Envie os arquivos para o repositório `rakumidev/rakumi-web`, substituindo os arquivos de mesmo nome. O Cloudflare pode continuar usando o fluxo automático GitHub → deploy.
+
+## Ajuste da órbita interativa
+
+- ORDO, STATION e RAKUMI agora ficam dentro do próprio instrumento orbital.
+- A órbita reage ao movimento do mouse com inclinação e deslocamento suaves para comunicar que é manipulável.
+- Os três nomes continuam funcionando como modos do sistema orbital.
+- O clique no espaço livre da órbita fixa temporariamente uma orientação; passar o mouse continua oferecendo uma prévia de movimento.
+- `prefers-reduced-motion` é respeitado.
