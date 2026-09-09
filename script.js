@@ -208,3 +208,212 @@ if ("IntersectionObserver" in window) {
 } else {
   progressBars.forEach(revealProgress);
 }
+
+/* =========================
+   V4 — Interactive orbital navigator
+   ========================= */
+
+const orbitSystem = document.querySelector("[data-orbit-system]");
+
+if (orbitSystem) {
+  const stage = orbitSystem.querySelector("[data-orbit-stage]");
+  const marker = orbitSystem.querySelector("[data-orbit-marker]");
+  const rings = [...orbitSystem.querySelectorAll("[data-orbit-ring]")];
+  const planets = [...orbitSystem.querySelectorAll("[data-orbit-planet]")];
+  const modeButtons = [...orbitSystem.querySelectorAll("[data-orbit-mode]")];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const CENTER = { x: 310, y: 210 };
+  const MODE_DURATION = 720;
+
+  const modes = {
+    ordo: [
+      { rx: 252, ry: 104, rot: -2, speed: 0.000020 },
+      { rx: 207, ry: 84, rot: -2, speed: -0.000026 },
+      { rx: 162, ry: 66, rot: -2, speed: 0.000033 },
+      { rx: 119, ry: 49, rot: -2, speed: -0.000041 },
+      { rx: 82, ry: 34, rot: -2, speed: 0.000050 }
+    ],
+    station: [
+      { rx: 252, ry: 122, rot: 13, speed: 0.000018 },
+      { rx: 210, ry: 96, rot: 9, speed: -0.000024 },
+      { rx: 165, ry: 78, rot: 16, speed: 0.000031 },
+      { rx: 122, ry: 59, rot: 7, speed: -0.000039 },
+      { rx: 84, ry: 40, rot: 18, speed: 0.000048 }
+    ],
+    rakumi: [
+      { rx: 254, ry: 116, rot: -7, speed: 0.000019 },
+      { rx: 210, ry: 94, rot: -5, speed: -0.000025 },
+      { rx: 166, ry: 76, rot: -9, speed: 0.000032 },
+      { rx: 124, ry: 57, rot: -4, speed: -0.000040 },
+      { rx: 86, ry: 39, rot: -11, speed: 0.000049 }
+    ]
+  };
+
+  const planetMap = [
+    { orbit: 0, angle: 0.54 },
+    { orbit: 0, angle: 2.78 },
+    { orbit: 1, angle: 4.02 },
+    { orbit: 1, angle: 0.94 },
+    { orbit: 2, angle: 3.45 },
+    { orbit: 4, angle: 5.57 }
+  ];
+
+  let activeMode = orbitSystem.dataset.mode || "rakumi";
+  let previousTime = performance.now();
+  let transitionStart = previousTime;
+  let transitionFrom = modes[activeMode].map((item) => ({ ...item }));
+  let transitionTo = modes[activeMode].map((item) => ({ ...item }));
+  let current = modes[activeMode].map((item) => ({ ...item }));
+
+  let lockedPointer = { x: 0, y: 0 };
+  let previewPointer = { x: 0, y: 0 };
+  let previewing = false;
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const lerp = (start, end, amount) => start + (end - start) * amount;
+  const ease = (value) => 1 - Math.pow(1 - value, 3);
+
+  function interpolateConfig(time) {
+    const raw = reduceMotion ? 1 : clamp((time - transitionStart) / MODE_DURATION, 0, 1);
+    const amount = ease(raw);
+
+    current = transitionFrom.map((from, index) => {
+      const to = transitionTo[index];
+      return {
+        rx: lerp(from.rx, to.rx, amount),
+        ry: lerp(from.ry, to.ry, amount),
+        rot: lerp(from.rot, to.rot, amount),
+        speed: lerp(from.speed, to.speed, amount)
+      };
+    });
+  }
+
+  function ellipsePoint(config, angle) {
+    const x = Math.cos(angle) * config.rx;
+    const y = Math.sin(angle) * config.ry;
+    const rotation = config.rot * Math.PI / 180;
+
+    return {
+      x: CENTER.x + (x * Math.cos(rotation) - y * Math.sin(rotation)),
+      y: CENTER.y + (x * Math.sin(rotation) + y * Math.cos(rotation))
+    };
+  }
+
+  function renderOrbit(time) {
+    const delta = Math.min(time - previousTime, 40);
+    previousTime = time;
+    interpolateConfig(time);
+
+    rings.forEach((ring, index) => {
+      const config = current[index];
+      ring.setAttribute("rx", config.rx.toFixed(2));
+      ring.setAttribute("ry", config.ry.toFixed(2));
+      ring.setAttribute("transform", `rotate(${config.rot.toFixed(2)} ${CENTER.x} ${CENTER.y})`);
+    });
+
+    planetMap.forEach((planet, index) => {
+      if (!reduceMotion) {
+        planet.angle += current[planet.orbit].speed * delta;
+      }
+
+      const point = ellipsePoint(current[planet.orbit], planet.angle);
+      const body = planets[index];
+      body.setAttribute("cx", point.x.toFixed(2));
+      body.setAttribute("cy", point.y.toFixed(2));
+    });
+
+    requestAnimationFrame(renderOrbit);
+  }
+
+  function pointerRatio(event) {
+    const rect = stage.getBoundingClientRect();
+    return {
+      x: clamp(((event.clientX - rect.left) / rect.width) * 2 - 1, -1, 1),
+      y: clamp(((event.clientY - rect.top) / rect.height) * 2 - 1, -1, 1),
+      localX: event.clientX - rect.left,
+      localY: event.clientY - rect.top
+    };
+  }
+
+  function applyStageTransform(pointer, strength = 1) {
+    if (reduceMotion) return;
+
+    const tiltX = (-pointer.y * 6.5 * strength).toFixed(2);
+    const tiltY = (pointer.x * 8.5 * strength).toFixed(2);
+    const shiftX = (pointer.x * 7 * strength).toFixed(2);
+    const shiftY = (pointer.y * 5 * strength).toFixed(2);
+
+    stage.style.setProperty("--orbit-tilt-x", `${tiltX}deg`);
+    stage.style.setProperty("--orbit-tilt-y", `${tiltY}deg`);
+    stage.style.setProperty("--orbit-shift-x", `${shiftX}px`);
+    stage.style.setProperty("--orbit-shift-y", `${shiftY}px`);
+  }
+
+  function showMarker(localX, localY) {
+    if (!marker || reduceMotion) return;
+
+    marker.style.left = `${localX}px`;
+    marker.style.top = `${localY}px`;
+    marker.classList.remove("is-visible");
+    void marker.offsetWidth;
+    marker.classList.add("is-visible");
+  }
+
+  function setMode(mode) {
+    if (!modes[mode]) return;
+
+    activeMode = mode;
+    orbitSystem.dataset.mode = mode;
+    transitionFrom = current.map((item) => ({ ...item }));
+    transitionTo = modes[mode].map((item) => ({ ...item }));
+    transitionStart = performance.now();
+
+    modeButtons.forEach((button) => {
+      const isActive = button.dataset.orbitMode === mode;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+  }
+
+  modeButtons.forEach((button) => {
+    button.addEventListener("click", () => setMode(button.dataset.orbitMode));
+  });
+
+  stage.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "touch" || reduceMotion) return;
+    const point = pointerRatio(event);
+    previewPointer = { x: point.x, y: point.y };
+    previewing = true;
+    stage.classList.add("is-pointing");
+    applyStageTransform(previewPointer, 0.28);
+  });
+
+  stage.addEventListener("pointerleave", () => {
+    previewing = false;
+    stage.classList.remove("is-pointing");
+    applyStageTransform(lockedPointer, 1);
+  });
+
+  stage.addEventListener("pointerdown", (event) => {
+    if (reduceMotion) return;
+    const point = pointerRatio(event);
+    lockedPointer = { x: point.x, y: point.y };
+    previewPointer = lockedPointer;
+    previewing = false;
+
+    stage.classList.remove("is-pointing");
+    stage.classList.add("is-clicked");
+    applyStageTransform(lockedPointer, 1);
+    showMarker(point.localX, point.localY);
+
+    window.setTimeout(() => stage.classList.remove("is-clicked"), 480);
+  });
+
+  window.addEventListener("blur", () => {
+    if (!previewing) applyStageTransform(lockedPointer, 1);
+  });
+
+  setMode(activeMode);
+  requestAnimationFrame(renderOrbit);
+}

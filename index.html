@@ -184,12 +184,57 @@
         </p>
       </div>
 
-      <div class="orbit-map orbit-image-panel" aria-label="The three Rakumi project paths" data-i18n-aria-label="about.orbitAria">
-        <img class="orbit-image" src="assets/orbital-chart.png" alt="" />
-        <div class="orbit-legend" aria-hidden="true">
-          <span><b>01</b> ORDO</span>
-          <span><b>02</b> STATION</span>
-          <span><b>03</b> RAKUMI</span>
+      <div
+        class="orbit-map orbit-interactive"
+        data-orbit-system
+        data-mode="rakumi"
+        aria-label="The three Rakumi project paths"
+        data-i18n-aria-label="about.orbitAria"
+      >
+        <div class="orbit-stage" data-orbit-stage aria-hidden="true">
+          <svg class="orbit-system" viewBox="0 0 620 420" role="presentation">
+            <g class="orbit-reference">
+              <path d="M310 55v20M310 345v20M82 210h20M518 210h20" />
+              <circle cx="310" cy="210" r="3" />
+            </g>
+
+            <g class="orbit-rings">
+              <ellipse class="orbit-ring orbit-ring-1" data-orbit-ring="0" cx="310" cy="210" rx="254" ry="116" />
+              <ellipse class="orbit-ring orbit-ring-2" data-orbit-ring="1" cx="310" cy="210" rx="210" ry="94" />
+              <ellipse class="orbit-ring orbit-ring-3" data-orbit-ring="2" cx="310" cy="210" rx="166" ry="76" />
+              <ellipse class="orbit-ring orbit-ring-4" data-orbit-ring="3" cx="310" cy="210" rx="124" ry="57" />
+              <ellipse class="orbit-ring orbit-ring-5" data-orbit-ring="4" cx="310" cy="210" rx="86" ry="39" />
+            </g>
+
+            <g class="orbit-planets">
+              <circle class="orbit-planet orbit-planet-1" data-orbit-planet="0" r="10" />
+              <circle class="orbit-planet orbit-planet-2 orbit-planet-gold" data-orbit-planet="1" r="7" />
+              <circle class="orbit-planet orbit-planet-3" data-orbit-planet="2" r="6" />
+              <circle class="orbit-planet orbit-planet-4 orbit-planet-gold" data-orbit-planet="3" r="8" />
+              <circle class="orbit-planet orbit-planet-5" data-orbit-planet="4" r="5" />
+              <circle class="orbit-planet orbit-planet-6" data-orbit-planet="5" r="4" />
+            </g>
+
+            <g class="orbit-core-graphic">
+              <circle class="orbit-core-halo" cx="310" cy="210" r="36" />
+              <circle class="orbit-core-star" cx="310" cy="210" r="24" />
+              <circle class="orbit-core-highlight" cx="302" cy="202" r="6" />
+            </g>
+          </svg>
+
+          <span class="orbit-click-marker" data-orbit-marker></span>
+        </div>
+
+        <div class="orbit-legend orbit-mode-switcher" role="group" aria-label="Orbit mode">
+          <button class="orbit-mode-button" type="button" data-orbit-mode="ordo" aria-pressed="false">
+            <b>01</b><span>ORDO</span>
+          </button>
+          <button class="orbit-mode-button" type="button" data-orbit-mode="station" aria-pressed="false">
+            <b>02</b><span>STATION</span>
+          </button>
+          <button class="orbit-mode-button is-active" type="button" data-orbit-mode="rakumi" aria-pressed="true">
+            <b>03</b><span>RAKUMI</span>
+          </button>
         </div>
       </div>
     </section>
