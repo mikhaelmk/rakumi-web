@@ -34,9 +34,3 @@ Envie os arquivos para o repositório `rakumidev/rakumi-web`, substituindo os ar
 - Os três nomes continuam funcionando como modos do sistema orbital.
 - O clique no espaço livre da órbita fixa temporariamente uma orientação; passar o mouse continua oferecendo uma prévia de movimento.
 - `prefers-reduced-motion` é respeitado.
-
-
-## Ajustes de conteúdo
-
-- Canal atualizado para **Mikhael** (`@mikhael_mk`).
-- A apresentação da história foi reduzida a fragmentos e a uma sinopse mais discreta, evitando revelar os temas centrais antes da leitura.

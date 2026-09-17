@@ -1,0 +1,7 @@
+ALTERAÇÕES FEITAS
+- YouTube atualizado para https://www.youtube.com/@mikhael_mk
+- Nome do canal no site: Mikhael
+- Projeto da história virou FRAGMENTS / FRAGMENTOS
+- Sinopse reescrita para não revelar identidade/tempo/estrutura central da trama
+- Timeline atualizada para não usar a descrição antiga
+- Traduções EN/PT atualizadas no script.js
