@@ -1,6 +1,6 @@
 # Rakumi Web
 
-Site pessoal da Rakumi para reunir projetos, escrita e experimentos.
+Site pessoal "Rakumi", usado para reunir projetos, escrita e experimentos.
 
 Esta versão abandona parte da aparência de "dashboard de portfólio" e puxa o visual para algo mais editorial e lunar: menos elementos decorativos, tipografia com mais personalidade e textos mais diretos.
 
