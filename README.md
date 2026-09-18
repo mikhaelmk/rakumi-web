@@ -1,36 +1,16 @@
-# Rakumi Website — V4
+# Rakumi Web
 
-Versão V4 refinada do site Rakumi.
+Site pessoal da Rakumi para reunir projetos, escrita e experimentos.
 
-## Alterações
+Esta versão abandona parte da aparência de "dashboard de portfólio" e puxa o visual para algo mais editorial e lunar: menos elementos decorativos, tipografia com mais personalidade e textos mais diretos.
 
-- Interface bilíngue EN / PT, com preferência salva em `localStorage`.
-- Favicon minimalista recortado do próprio asset sheet Rakumi.
-- Órbita editorial recortada da referência visual original e usada como imagem real no layout.
-- Tipografia atualizada:
-  - **Michroma** para identidade e títulos;
-  - **Space Grotesk** para leitura e interface;
-  - **JetBrains Mono** para detalhes técnicos.
-- Sistema de ícones celestes mantido para elementos menores da interface.
-- Mantidos HTML, CSS e JavaScript puros, sem frameworks.
+## Arquivos principais
 
-## Estrutura
+- `index.html` — estrutura e conteúdo base
+- `style.css` — identidade visual, responsividade e órbita
+- `script.js` — tradução EN/PT e interação da órbita
+- `assets/` — imagens e favicon
 
-- `index.html`
-- `style.css`
-- `script.js`
-- `assets/rakumi-moon.png`
-- `assets/orbital-chart.png`
-- `assets/favicon.png`
+## Observação
 
-## Deploy
-
-Envie os arquivos para o repositório `rakumidev/rakumi-web`, substituindo os arquivos de mesmo nome. O Cloudflare pode continuar usando o fluxo automático GitHub → deploy.
-
-## Ajuste da órbita interativa
-
-- ORDO, STATION e RAKUMI agora ficam dentro do próprio instrumento orbital.
-- A órbita reage ao movimento do mouse com inclinação e deslocamento suaves para comunicar que é manipulável.
-- Os três nomes continuam funcionando como modos do sistema orbital.
-- O clique no espaço livre da órbita fixa temporariamente uma orientação; passar o mouse continua oferecendo uma prévia de movimento.
-- `prefers-reduced-motion` é respeitado.
+HTML, CSS e JavaScript aqui também fazem parte do processo de aprendizado; o projeto não tenta representar domínio profissional de desenvolvimento web.
