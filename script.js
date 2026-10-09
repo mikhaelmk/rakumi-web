@@ -1,5 +1,34 @@
 const translations = {
   en: {
+    "nocturne.metaTitle": "Nocturne — Rakumi",
+    "nocturne.metaDescription": "Nocturne — a celestial Vencord theme built with deep navy, lunar blue and restrained gold.",
+    "nocturne.status": "Released",
+    "nocturne.kind": "THEME / 04",
+    "nocturne.description": "A celestial Vencord theme built around deep navy surfaces, lunar blue and restrained gold.",
+    "nocturne.view": "View theme →",
+    "nocturne.downloadLink": "Download .theme.css →",
+    "nocturne.back": "← Back",
+    "nocturne.subtitle": "A quieter orbit for Vencord.",
+    "nocturne.palette": "Palette",
+    "nocturne.download": "Download .theme.css",
+    "nocturne.copy": "Copy online theme URL",
+    "nocturne.copied": "Theme URL copied.",
+    "nocturne.copyFailed": "Could not copy automatically. Select and copy the URL below.",
+    "nocturne.preview": "Theme preview",
+    "nocturne.previewNote": "An HTML/CSS palette study of the theme’s surfaces and accents.",
+    "nocturne.channels": "Channels",
+    "nocturne.general": "general",
+    "nocturne.projects": "projects",
+    "nocturne.message": "Deep navy surfaces. Lunar blue details. A little gold.",
+    "nocturne.reply": "A quiet space for the next idea.",
+    "nocturne.composer": "Message #general",
+    "nocturne.installation": "Installation",
+    "nocturne.online": "Online",
+    "nocturne.local": "Local",
+    "nocturne.onlinePath": "Settings → Vencord → Themes → Online Themes",
+    "nocturne.onlineInstructions": "Paste the theme URL below and enable Nocturne.",
+    "nocturne.localPath": "Settings → Vencord → Themes → Local Themes → Open Themes Folder",
+    "nocturne.localInstructions": "Download Nocturne.theme.css, place it in the themes folder and enable it.",
     "meta.title": "Rakumi — Code, stories & other obsessions",
     "meta.description": "Rakumi — a personal archive for code, fiction and experiments.",
     "nav.aria": "Primary navigation",
@@ -67,6 +96,35 @@ const translations = {
     "footer.status": "online · 2026"
   },
   pt: {
+    "nocturne.metaTitle": "Nocturne — Rakumi",
+    "nocturne.metaDescription": "Nocturne — um tema celestial para Vencord em azul-marinho profundo, azul lunar e dourado discreto.",
+    "nocturne.status": "Lançado",
+    "nocturne.kind": "TEMA / 04",
+    "nocturne.description": "Um tema celestial para Vencord com superfícies em azul-marinho profundo, azul lunar e dourado discreto.",
+    "nocturne.view": "Ver tema →",
+    "nocturne.downloadLink": "Baixar .theme.css →",
+    "nocturne.back": "← Voltar",
+    "nocturne.subtitle": "Uma órbita mais tranquila para o Vencord.",
+    "nocturne.palette": "Paleta",
+    "nocturne.download": "Baixar .theme.css",
+    "nocturne.copy": "Copiar URL do tema online",
+    "nocturne.copied": "URL do tema copiada.",
+    "nocturne.copyFailed": "Não foi possível copiar automaticamente. Selecione e copie a URL abaixo.",
+    "nocturne.preview": "Prévia do tema",
+    "nocturne.previewNote": "Um estudo em HTML/CSS das superfícies e cores de destaque do tema.",
+    "nocturne.channels": "Canais",
+    "nocturne.general": "geral",
+    "nocturne.projects": "projetos",
+    "nocturne.message": "Superfícies em azul-marinho. Detalhes em azul lunar. Um pouco de dourado.",
+    "nocturne.reply": "Um espaço tranquilo para a próxima ideia.",
+    "nocturne.composer": "Mensagem em #geral",
+    "nocturne.installation": "Instalação",
+    "nocturne.online": "Online",
+    "nocturne.local": "Local",
+    "nocturne.onlinePath": "Configurações → Vencord → Temas → Temas online",
+    "nocturne.onlineInstructions": "Cole a URL do tema abaixo e ative o Nocturne.",
+    "nocturne.localPath": "Configurações → Vencord → Temas → Temas locais → Abrir pasta de temas",
+    "nocturne.localInstructions": "Baixe Nocturne.theme.css, coloque-o na pasta de temas e ative-o.",
     "meta.title": "Rakumi — código, histórias e outras obsessões",
     "meta.description": "Rakumi — um arquivo pessoal de código, ficção e experimentos.",
     "nav.aria": "Navegação principal",
@@ -148,8 +206,8 @@ function applyLanguage(language, { persist = true } = {}) {
   const nextLanguage = SUPPORTED_LANGUAGES.includes(language) ? language : "en";
 
   document.documentElement.lang = nextLanguage === "pt" ? "pt-BR" : "en";
-  document.title = t(nextLanguage, "meta.title");
-  if (metaDescription) metaDescription.content = t(nextLanguage, "meta.description");
+  document.title = t(nextLanguage, document.body.dataset.i18nTitle || "meta.title");
+  if (metaDescription) metaDescription.content = t(nextLanguage, document.body.dataset.i18nDescription || "meta.description");
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     element.textContent = t(nextLanguage, element.dataset.i18n);
