@@ -1,400 +1,679 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <meta
+
     name="description"
+
     content="Rakumi — code, stories and experiments built under the moon."
+
   />
+
   <meta name="theme-color" content="#07101f" />
+
   <title>Rakumi — Code, stories & other obsessions</title>
+
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
+
   <link rel="stylesheet" href="style.css" />
+
 </head>
+
 <body>
-  <!-- Reusable celestial icon system inspired by the Rakumi asset sheet. -->
+<!-- Reusable celestial icon system inspired by the Rakumi asset sheet. -->
   <svg class="svg-sprite" aria-hidden="true" width="0" height="0">
+
     <defs>
+
       <symbol id="icon-compass" viewBox="0 0 64 64">
+
         <circle cx="32" cy="32" r="9" />
+
         <path d="M32 3v15M32 46v15M3 32h15M46 32h15" />
+
         <path d="M32 13 36 28 51 32 36 36 32 51 28 36 13 32 28 28Z" />
+
         <circle cx="32" cy="32" r="2.5" class="icon-fill" />
+
       </symbol>
 
       <symbol id="icon-orbit" viewBox="0 0 64 64">
+
         <circle cx="32" cy="32" r="7" class="icon-fill" />
+
         <ellipse cx="32" cy="32" rx="27" ry="12" transform="rotate(-18 32 32)" />
+
         <ellipse cx="32" cy="32" rx="21" ry="8" transform="rotate(35 32 32)" opacity=".62" />
+
         <circle cx="9" cy="37" r="2.7" class="icon-gold" />
+
         <circle cx="53" cy="20" r="2" class="icon-fill" />
+
       </symbol>
 
       <symbol id="icon-coordinates" viewBox="0 0 64 64">
+
         <circle cx="32" cy="32" r="20" />
+
         <circle cx="32" cy="32" r="7" />
+
         <path d="M32 3v19M32 42v19M3 32h19M42 32h19" />
+
         <circle cx="32" cy="32" r="2.5" class="icon-gold" />
+
       </symbol>
 
       <symbol id="icon-developer" viewBox="0 0 64 64">
+
         <rect x="7" y="12" width="50" height="40" rx="2" />
+
         <path d="m20 25 8 7-8 7M33 40h13" />
+
         <path d="M43 18h7" opacity=".58" />
+
         <circle cx="48" cy="18" r="2" class="icon-gold" />
+
       </symbol>
 
       <symbol id="icon-knowledge" viewBox="0 0 64 64">
+
         <circle cx="32" cy="32" r="23" />
+
         <path d="M36 18c-8 2-13 9-12 16 1 8 8 13 16 12-6 5-15 5-21-1-7-7-7-18 0-25 5-5 12-6 17-2Z" class="icon-fill" />
+
         <circle cx="32" cy="8" r="2.5" class="icon-gold" />
+
         <circle cx="54" cy="32" r="2" class="icon-fill" />
+
       </symbol>
 
       <symbol id="icon-connection" viewBox="0 0 64 64">
+
         <path d="M13 43 21 20 35 13 49 24 44 46 28 52 13 43Z" />
+
         <path d="m21 20 7 32M35 13l9 33M13 43l36-19" opacity=".54" />
+
         <circle cx="13" cy="43" r="3" class="icon-fill" />
+
         <circle cx="21" cy="20" r="3" class="icon-fill" />
+
         <circle cx="35" cy="13" r="3" class="icon-gold" />
+
         <circle cx="49" cy="24" r="3" class="icon-fill" />
+
         <circle cx="44" cy="46" r="3" class="icon-fill" />
+
         <circle cx="28" cy="52" r="3" class="icon-fill" />
+
       </symbol>
 
       <symbol id="icon-exploration" viewBox="0 0 64 64">
+
         <circle cx="32" cy="32" r="23" />
+
         <path d="M32 12 35 28 52 32 35 36 32 52 29 36 12 32 29 28Z" />
+
         <circle cx="49" cy="17" r="2.5" class="icon-gold" />
+
       </symbol>
 
       <symbol id="icon-moon" viewBox="0 0 64 64">
+
         <circle cx="32" cy="32" r="23" />
+
         <path d="M39 15c-9 2-15 10-14 19 1 9 9 15 18 14-4 4-9 6-14 5-12-2-20-13-18-25 2-10 10-17 20-18 3 0 6 1 8 2Z" class="icon-fill" />
+
         <path d="M32 4v9M32 51v9" opacity=".55" />
+
         <circle cx="46" cy="37" r="2" class="icon-gold" />
+
       </symbol>
+
     </defs>
+
   </svg>
 
   <div class="sky" aria-hidden="true">
+
     <span class="star star-1"></span>
+
     <span class="star star-2"></span>
+
     <span class="star star-3"></span>
+
     <span class="star star-4"></span>
+
     <span class="star star-5"></span>
+
     <span class="star star-6"></span>
+
     <span class="star star-7"></span>
+
   </div>
 
   <header class="site-header">
+
     <a class="brand" href="#top" aria-label="Rakumi home">
+
       <svg class="brand-mark" aria-hidden="true"><use href="#icon-compass"></use></svg>
+
       <span>RAKUMI</span>
+
     </a>
 
     <div class="header-actions">
+
       <nav class="nav" aria-label="Primary navigation" data-i18n-aria-label="nav.aria">
+
         <a href="#about" data-i18n="nav.about">About</a>
+
         <a href="#projects" data-i18n="nav.projects">Projects</a>
+
         <a href="#building" data-i18n="nav.building">Now</a>
+
       </nav>
 
       <div class="language-switcher" role="group" aria-label="Language" data-i18n-aria-label="language.aria">
+
         <button class="language-button" type="button" data-lang="en" aria-pressed="true">EN</button>
+
         <span aria-hidden="true">/</span>
+
         <button class="language-button" type="button" data-lang="pt" aria-pressed="false">PT</button>
+
       </div>
+
     </div>
+
   </header>
 
   <main id="top">
+
     <section class="hero section">
+
       <div class="hero-copy">
+
         <p class="eyebrow" data-i18n="hero.eyebrow">PERSONAL ARCHIVE · CODE · FICTION</p>
+
         <h1 data-i18n-html="hero.title">Code, stories<br />and other obsessions</h1>
+
         <p class="hero-text" data-i18n="hero.text">
+
           Rakumi is where I keep the things I code, write and invent when an idea refuses to leave me alone.
+
         </p>
 
         <div class="hero-actions">
+
           <a class="button button-primary" href="#projects" data-i18n="hero.explore">See what's here</a>
+
           <a
+
             class="button button-secondary"
+
             href="https://github.com/mikhaelmk"
+
             target="_blank"
+
             rel="noreferrer"
+
           >
+
             GitHub
+
           </a>
+
         </div>
+
       </div>
 
       <div class="hero-visual">
+
         <div class="hero-diagram hero-diagram-a hero-orbit-image" aria-hidden="true">
+
           <img src="assets/orbital-chart.png" alt="" />
+
         </div>
+
         <div class="hero-diagram hero-diagram-b" aria-hidden="true">
+
           <svg><use href="#icon-coordinates"></use></svg>
+
         </div>
+
         <img
+
           class="hero-art"
+
           src="assets/rakumi-moon.png"
+
           alt="Rakumi, a lunar raccoon sitting on a crescent moon"
+
           data-i18n-alt="hero.alt"
+
           width="1254"
+
           height="1254"
+
           fetchpriority="high"
+
         />
+
       </div>
+
     </section>
 
     <div class="celestial-divider section" aria-hidden="true">
+
       <span></span><svg><use href="#icon-exploration"></use></svg><span></span>
+
     </div>
 
-    <section id="about" class="section content-section about-layout">
-      <div class="about-copy">
-        <div class="section-heading with-symbol">
-          <div class="section-symbol" aria-hidden="true">
-            <svg><use href="#icon-coordinates"></use></svg>
-          </div>
-          <div>
-            <p class="eyebrow" data-i18n="about.eyebrow">01 — ABOUT</p>
-            <h2 data-i18n="about.title">So, what is this?</h2>
-          </div>
-        </div>
+   <section id="about" class="section content-section observer-section">
+
+  <div class="observer-frame">
+
+    <img
+
+      src="assets/celestial/astrolabe-frame.png"
+
+      alt=""
+
+      class="observer-frame-art"
+
+      aria-hidden="true"
+
+    />
+
+    <div class="observer-content">
+
+      <div class="observer-copy">
+
+        <p class="eyebrow" data-i18n="about.eyebrow">
+
+          01 — OBSERVER
+
+        </p>
+
+        <h2 data-i18n="about.title">
+
+          Mikael
+
+        </h2>
 
         <p class="section-text" data-i18n="about.text">
-          Rakumi is where I keep coursework, coding attempts, stories and experiments I want to keep around. It is not an expert showcase; it is an archive of the process.
+
+          I study Computer Science and use Rakumi as an archive for the things I build,
+
+          learn, write and obsess over.
+
         </p>
+
       </div>
 
-      <div
-        class="orbit-map orbit-interactive"
-        data-orbit-system
-        data-mode="rakumi"
-        aria-label="The three Rakumi project paths"
-        data-i18n-aria-label="about.orbitAria"
-      >
-        <div class="orbit-stage" data-orbit-stage>
-          <svg class="orbit-system" viewBox="0 0 620 420" aria-hidden="true" focusable="false">
-            <g class="orbit-reference">
-              <path d="M310 55v20M310 345v20M82 210h20M518 210h20" />
-              <circle cx="310" cy="210" r="3" />
-            </g>
+      <div class="observer-data">
 
-            <g class="orbit-rings">
-              <ellipse class="orbit-ring orbit-ring-1" data-orbit-ring="0" cx="310" cy="210" rx="254" ry="116" />
-              <ellipse class="orbit-ring orbit-ring-2" data-orbit-ring="1" cx="310" cy="210" rx="210" ry="94" />
-              <ellipse class="orbit-ring orbit-ring-3" data-orbit-ring="2" cx="310" cy="210" rx="166" ry="76" />
-              <ellipse class="orbit-ring orbit-ring-4" data-orbit-ring="3" cx="310" cy="210" rx="124" ry="57" />
-              <ellipse class="orbit-ring orbit-ring-5" data-orbit-ring="4" cx="310" cy="210" rx="86" ry="39" />
-            </g>
+        <div>
 
-            <g class="orbit-planets">
-              <circle class="orbit-planet orbit-planet-1" data-orbit-planet="0" r="10" />
-              <circle class="orbit-planet orbit-planet-2 orbit-planet-gold" data-orbit-planet="1" r="7" />
-              <circle class="orbit-planet orbit-planet-3" data-orbit-planet="2" r="6" />
-              <circle class="orbit-planet orbit-planet-4 orbit-planet-gold" data-orbit-planet="3" r="8" />
-              <circle class="orbit-planet orbit-planet-5" data-orbit-planet="4" r="5" />
-              <circle class="orbit-planet orbit-planet-6" data-orbit-planet="5" r="4" />
-            </g>
+          <span class="observer-label">FIELD</span>
 
-            <g class="orbit-core-graphic">
-              <circle class="orbit-core-halo" cx="310" cy="210" r="36" />
-              <circle class="orbit-core-star" cx="310" cy="210" r="24" />
-              <circle class="orbit-core-highlight" cx="302" cy="202" r="6" />
-            </g>
-          </svg>
+          <strong>Computer Science</strong>
 
-          <div class="orbit-mode-switcher" role="group" aria-label="Orbit mode">
-            <button class="orbit-mode-button orbit-mode-ordo" type="button" data-orbit-mode="ordo" aria-pressed="false">
-              <b>01</b><span>ORDO</span>
-            </button>
-            <button class="orbit-mode-button orbit-mode-station" type="button" data-orbit-mode="station" aria-pressed="false">
-              <b>02</b><span>STATION</span>
-            </button>
-            <button class="orbit-mode-button orbit-mode-rakumi is-active" type="button" data-orbit-mode="rakumi" aria-pressed="true">
-              <b>03</b><span>RAKUMI</span>
-            </button>
-          </div>
-
-          <span class="orbit-click-marker" data-orbit-marker aria-hidden="true"></span>
         </div>
+
+        <div>
+
+          <span class="observer-label">INTERESTS</span>
+
+          <strong>
+
+            C++ · Systems · Software Engineering · Cybersecurity · Writing
+
+          </strong>
+
+        </div>
+
+        <div>
+
+          <span class="observer-label">LANGUAGES</span>
+
+          <strong>PT · EN · FR</strong>
+
+        </div>
+
+        <div>
+
+          <span class="observer-label">STATUS</span>
+
+          <strong>Learning / Building</strong>
+
+        </div>
+
       </div>
-    </section>
+
+    </div>
+
+  </div>
+
+  <img
+
+    src="assets/celestial/divider.png"
+
+    alt=""
+
+    class="celestial-section-divider"
+
+    aria-hidden="true"
+
+  />
+
+</section>
 
     <section id="projects" class="section content-section">
+
       <div class="section-heading with-symbol">
+
         <div class="section-symbol" aria-hidden="true">
+
           <svg><use href="#icon-orbit"></use></svg>
+
         </div>
+
         <div>
+
           <p class="eyebrow" data-i18n="projects.eyebrow">02 — PROJECTS</p>
+
           <h2 data-i18n="projects.title">On my radar right now</h2>
+
         </div>
+
       </div>
 
       <div class="project-grid">
+
         <article class="project-card">
+
           <svg class="project-symbol" aria-hidden="true"><use href="#icon-developer"></use></svg>
+
           <div class="project-topline">
+
             <span class="project-index">01</span>
+
             <span class="status" data-i18n="projects.ordo.status">In Development</span>
+
           </div>
 
           <p class="project-kind" data-i18n="projects.ordo.kind">CODE / 01</p>
+
           <h3>Ordo</h3>
+
           <p data-i18n="projects.ordo.description">
+
             A local task manager I am using to practice C++ and object-oriented programming outside college exercises.
+
           </p>
 
           <div class="project-phase">
+
             <span data-i18n="projects.currentPhase">Current phase</span>
+
             <strong data-i18n="projects.ordo.phase">v0.1 — foundation</strong>
+
           </div>
 
           <a class="text-link" href="https://github.com/mikhaelmk" target="_blank" rel="noreferrer" data-i18n="projects.ordo.link">
+
             Open GitHub →
+
           </a>
+
         </article>
 
         <article class="project-card">
+
           <svg class="project-symbol" aria-hidden="true"><use href="#icon-knowledge"></use></svg>
+
           <div class="project-topline">
+
             <span class="project-index">02</span>
+
             <span class="status" data-i18n="projects.station.status">Writing</span>
+
           </div>
 
           <p class="project-kind" data-i18n="projects.station.kind">FRAGMENT / 02</p>
+
           <h3 data-i18n="projects.station.title">Fragments</h3>
+
           <p data-i18n="projects.station.description">
+
             A station, a moon far too large, and people who seem to have arrived there for the wrong reason. I would rather not explain the rest yet.
+
           </p>
 
           <div class="project-phase">
+
             <span data-i18n="projects.currentPhase">Current phase</span>
+
             <strong data-i18n="projects.station.phase">manuscript in progress</strong>
+
           </div>
 
           <span class="project-note" data-i18n="projects.station.link">private draft</span>
+
         </article>
 
         <article class="project-card">
+
           <svg class="project-symbol" aria-hidden="true"><use href="#icon-connection"></use></svg>
+
           <div class="project-topline">
+
             <span class="project-index">03</span>
+
             <span class="status" data-i18n="projects.channel.status">Preparing</span>
+
           </div>
 
           <p class="project-kind" data-i18n="projects.channel.kind">CHANNEL / 03</p>
+
           <h3 data-i18n="projects.channel.title">M!KHAEL</h3>
+
           <p data-i18n="projects.channel.description">
+
             My channel for games, projects, ideas and anything I get obsessed with enough to turn into a video.
+
           </p>
 
           <a class="text-link" href="https://www.youtube.com/@mikhael_mk" target="_blank" rel="noreferrer" data-i18n="projects.channel.link">Visit Channel →</a>
+
         </article>
 
         <article class="project-card">
+
           <svg class="project-symbol" aria-hidden="true"><use href="#icon-moon"></use></svg>
+
           <div class="project-topline">
+
             <span class="project-index">04</span>
+
             <span class="status" data-i18n="nocturne.status">Released</span>
+
           </div>
+
           <p class="project-kind" data-i18n="nocturne.kind">THEME / 04</p>
+
           <h3>Nocturne</h3>
+
           <p data-i18n="nocturne.description">A celestial Vencord theme built around deep navy surfaces, lunar blue and restrained gold.</p>
+
           <a class="text-link" href="nocturne.html" data-i18n="nocturne.view">View theme →</a>
+
           <a class="text-link" href="themes/Nocturne.theme.css" download data-i18n="nocturne.downloadLink">Download .theme.css →</a>
+
         </article>
 
         <article class="project-card">
+
           <svg class="project-symbol" aria-hidden="true">
+
             <use href="#icon-developer"></use>
+
           </svg>
+
           <div class="project-topline">
+
             <span class="project-index">05</span>
+
             <span class="status" data-i18n="projects.train.status">
+
               Completed
+
             </span>
+
           </div>
+
           <p class="project-kind" data-i18n="projects.train.kind">
+
             CODE / 05
+
           </p>
+
           <h3 data-i18n="projects.train.title">
+
             Train Cargo System
+
           </h3>
+
            <p data-i18n="projects.train.description">
+
             An academic C++ project developed with Malu to practice queues, stacks, CSV file handling and data structures through a turn-based train cargo distribution system.
+
           </p>
+
           <div class="project-phase">
+
             <span data-i18n="projects.currentPhase">
+
               Current phase
+
             </span>
+
             <strong data-i18n="projects.train.phase">
+
               completed / academic project
+
             </strong>
+
           </div>
-          
+
           <a
+
           class="text-link"
+
           href="https://github.com/maluscheiffer/Trabalho1_Estrutura_de_Dados"
+
           target="_blank"
+
           rel="noreferrer"
+
           data-i18n="projects.train.link"
+
           >
+
           Open GitHub →
+
         </a>
+
       </article>
 
       </div>
+
     </section>
 
     <section id="building" class="section content-section">
+
       <div class="section-heading with-symbol">
+
         <div class="section-symbol" aria-hidden="true">
+
           <svg><use href="#icon-developer"></use></svg>
+
         </div>
+
         <div>
+
           <p class="eyebrow" data-i18n="building.eyebrow">03 — NOW</p>
+
           <h2 data-i18n="building.title">What is open on my desk</h2>
+
         </div>
+
       </div>
 
       <div class="building-panel">
+
         <div>
+
           <span class="panel-label" data-i18n="building.project">Project</span>
+
           <strong>Ordo</strong>
+
         </div>
+
         <div>
+
           <span class="panel-label" data-i18n="building.statusLabel">Status</span>
+
           <strong><i class="signal-dot"></i><span data-i18n="building.status">Building</span></strong>
+
         </div>
+
         <div>
+
           <span class="panel-label" data-i18n="building.nextMilestone">Next milestone</span>
+
           <strong data-i18n="building.milestone">v0.1 — create &amp; list tasks</strong>
+
         </div>
+
       </div>
+
     </section>
+
   </main>
 
   <footer class="footer">
+
     <div>
+
       <strong>RAKUMI</strong>
+
       <p data-i18n="footer.tagline">Code, fiction and a few obsessions</p>
+
     </div>
 
     <div class="footer-links">
+
       <a href="https://github.com/mikhaelmk" target="_blank" rel="noreferrer">GitHub</a>
+
       <a href="https://www.youtube.com/@mikhael_mk" target="_blank" rel="noreferrer">YouTube</a>
+
     </div>
 
     <span class="footer-status"><i class="signal-dot"></i><span data-i18n="footer.status">online · 2026</span></span>
+
   </footer>
 
   <script src="script.js"></script>
+
 </body>
+
 </html>
