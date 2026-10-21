@@ -1,7 +1,7 @@
 /**
  * @name Nocturne
  * @author Mikael
- * @version 1.0.0
+ * @version 1.0.1
  * @description A celestial Vencord theme built with deep navy, lunar blue and restrained gold.
  * @source https://github.com/mikhaelmk/rakumi-web
  */
@@ -1227,6 +1227,8 @@ nav[class*="guilds_"] :is(.childWrapperNoHoverBg__6e9f8, .circleIconButton__5bc7
 [class*="tooltip_"],
 [class*="tooltipPrimary_"],
 [class*="tooltipGrey_"] {
+    --background-floating: var(--nocturne-surface);
+    --background-surface-higher: var(--nocturne-surface);
     background-color: var(--nocturne-surface) !important;
     border-color: var(--nocturne-border) !important;
 }
@@ -1255,4 +1257,87 @@ nav[class*="guilds_"] :is(.childWrapperNoHoverBg__6e9f8, .circleIconButton__5bc7
     --control-secondary-background-default: var(--nocturne-navy);
     --border-subtle: var(--nocturne-border);
     background-color: var(--nocturne-surface) !important;
+}
+.inner_c0bea0:not(.custom-user-profile-theme .inner_c0bea0) {
+    background-color: var(--nocturne-surface) !important;
+    --background-mod-subtle: rgba(155, 187, 226, 0.06);
+    --border-subtle: var(--nocturne-border);
+}
+
+.inner_c0bea0:not(.custom-user-profile-theme .inner_c0bea0) :is(.overlay_c0bea0, .card__9ed47, .redesignFooter__272c7 .secondary_a22cb0) {
+    background-color: var(--nocturne-navy) !important;
+    border-color: var(--nocturne-border) !important;
+}
+
+section[aria-label="Cabeçalho do canal"] {
+    --app-frame-border: var(--nocturne-border);
+    --border-subtle: var(--nocturne-border);
+    box-shadow: 0 1px 0 var(--nocturne-border) !important;
+}
+
+[class*="panels_"] [class*="activityPanel_"] {
+    background-color: var(--nocturne-surface) !important;
+    border-color: var(--nocturne-border) !important;
+}
+
+.postEnrollmentBackground__1699b {
+    background-color: var(--nocturne-surface) !important;
+}
+
+/* =========================================================
+   NOCTURNE — TOKENS DO DISCORD
+   Causa das areas cinzas: o Discord pinta ~450 superficies com
+   tokens neutros (--neutral-60..78) definidos em .theme-dark,
+   .theme-darker e .theme-midnight. Antes, o Nocturne so remapeava
+   esses tokens dentro de containers especificos.
+   Mesma especificidade do Discord (0,1,0): vence o padrao por vir
+   depois, mas perde para .high-contrast-mode (acessibilidade).
+   Perfis com tema personalizado mantem as cores do perfil.
+   ========================================================= */
+
+:where(.theme-dark, .theme-darker, .theme-midnight):not(.custom-user-profile-theme) {
+    --app-frame-background: var(--nocturne-deep);
+    --chat-background-default: var(--nocturne-deep);
+    --background-base-lowest: var(--nocturne-deep);
+    --background-base-lower: var(--nocturne-navy);
+    --background-base-low: var(--nocturne-navy);
+    --background-surface-high: var(--nocturne-surface);
+    --background-surface-higher: var(--nocturne-navy);
+    --background-surface-highest: var(--nocturne-surface);
+    --modal-background: var(--nocturne-surface);
+    --modal-footer-background: var(--nocturne-navy);
+    --card-background-default: var(--nocturne-surface);
+    --user-profile-overlay-background: var(--nocturne-navy);
+    --user-profile-toolbar-background: var(--nocturne-navy);
+    --user-profile-activity-toolbar-background: var(--nocturne-navy);
+
+    --background-mod-muted: rgba(155, 187, 226, 0.04);
+    --background-mod-subtle: rgba(155, 187, 226, 0.06);
+    --background-mod-normal: rgba(155, 187, 226, 0.10);
+    --background-mod-strong: rgba(155, 187, 226, 0.12);
+    --message-background-hover: rgba(155, 187, 226, 0.06);
+    --interactive-background-hover: rgba(155, 187, 226, 0.08);
+    --interactive-background-active: rgba(155, 187, 226, 0.12);
+    --interactive-background-selected: rgba(155, 187, 226, 0.12);
+
+    --border-muted: var(--nocturne-border);
+    --border-subtle: var(--nocturne-border);
+    --border-normal: var(--nocturne-border);
+    --border-strong: var(--nocturne-border-hover);
+    --app-frame-border: var(--nocturne-border);
+    --card-border-default: var(--nocturne-border);
+    --chat-border: var(--nocturne-border);
+    --spine-default: var(--nocturne-border);
+
+    --input-background-default: var(--nocturne-surface);
+    --input-border-default: var(--nocturne-border);
+    --input-border-hover: var(--nocturne-border-hover);
+    --control-secondary-background-default: var(--nocturne-surface);
+    --control-secondary-background-hover: var(--nocturne-navy);
+    --control-secondary-background-active: rgba(155, 187, 226, 0.12);
+    --control-secondary-border-default: var(--nocturne-border);
+    --control-secondary-border-hover: var(--nocturne-border-hover);
+
+    --scrollbar-auto-thumb: var(--nocturne-muted);
+    --scrollbar-thin-thumb: var(--nocturne-muted);
 }
