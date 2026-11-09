@@ -1,29 +1,42 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Manrope:wght@400;500;600&display=swap");
 
 /* =========================================================
-   01. DESIGN TOKENS
+   01. TOKENS
+   Paleta tirada das artes novas (contornos lavanda, fitas
+   bordô, prata/marfim, navy quase preto da moldura).
    ========================================================= */
 
 :root {
-  --bg: #060d19;
-  --bg-soft: #0a1424;
-  --panel: rgba(10, 22, 39, 0.58);
-  --panel-hover: rgba(12, 27, 48, 0.72);
+  --bg: #0b0c1a;            /* azul-preto */
+  --bg-deep: #07070f;
+  --surface: #14152a;       /* navy um pouco mais claro */
 
-  --border: rgba(181, 199, 226, 0.13);
-  --border-strong: rgba(206, 218, 237, 0.24);
+  --text: #ece8e4;          /* marfim frio */
+  --text-soft: #b7b9cf;     /* azul-cinza claro */
+  --muted: #8f93b2;
+  --faint: #5f6386;         /* só decoração, nunca texto essencial */
 
-  --text: #f1eee7;
-  --muted: #9aa9c1;
-  --accent: #a9c0e7;
-  --accent-strong: #d1def2;
-  --gold: #d9ae6a;
+  --lunar: #a3a6f0;         /* lavanda / azul lunar dos contornos */
+  --lunar-soft: #c8caf4;
+  --violet: #6e6290;        /* violeta dessaturado */
+  --wine: #7e2c45;          /* bordô das fitas */
+  --wine-soft: #c06b83;     /* bordô legível em texto pequeno */
+  --gold: #d7c29a;          /* dourado: raro, só em detalhes mínimos */
 
-  --max-width: 1160px;
+  --line: rgba(200, 202, 244, 0.12);
+  --line-strong: rgba(200, 202, 244, 0.26);
 
-  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  /* Nomes antigos, ainda usados por nocturne.css */
+  --accent: var(--lunar);
+  --accent-strong: var(--lunar-soft);
+  --border: var(--line);
+  --border-strong: var(--line-strong);
+
+  --max-width: 1120px;
+  --measure: 34rem;
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-body: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
 }
 
 
@@ -39,18 +52,23 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 24% 9%, rgba(57, 88, 137, 0.14), transparent 30rem),
-    radial-gradient(circle at 88% 72%, rgba(31, 57, 96, 0.07), transparent 34rem),
-    linear-gradient(180deg, #07101d 0%, #050a12 100%);
+  background-color: var(--bg);
+  /* Um único brilho lunar atrás do hero; o resto é navy liso. */
+  background-image:
+    radial-gradient(ellipse 56rem 38rem at 24% 6%, rgba(110, 98, 144, 0.16), transparent 70%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
   color: var(--text);
   font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
 img,
@@ -60,6 +78,7 @@ svg {
 
 img {
   display: block;
+  height: auto;
 }
 
 a {
@@ -72,20 +91,33 @@ button {
 }
 
 ::selection {
-  background: rgba(169, 192, 231, 0.22);
+  background: rgba(163, 166, 240, 0.28);
   color: var(--text);
 }
 
 .section,
 .site-header,
 .footer {
-  width: min(calc(100% - 2rem), var(--max-width));
+  width: min(calc(100% - 2.5rem), var(--max-width));
   margin-inline: auto;
+}
+
+.block {
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+/* O divisor já separa as seções; não precisa de espaço dobrado. */
+.ornament + .block {
+  padding-top: clamp(1.75rem, 3.5vw, 2.75rem);
+}
+
+.block:has(+ .ornament) {
+  padding-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
 }
 
 
 /* =========================================================
-   03. BACKGROUND SKY
+   03. CÉU DE FUNDO — poucas estrelas, só piscando devagar
    ========================================================= */
 
 .sky {
@@ -100,22 +132,22 @@ button {
   width: 2px;
   height: 2px;
   border-radius: 50%;
-  background: #dce7ff;
-  opacity: 0.45;
-  animation: drift 14s ease-in-out infinite alternate;
+  background: var(--lunar-soft);
+  opacity: 0.3;
+  animation: twinkle 7s ease-in-out infinite alternate;
 }
 
 .star-1 { top: 14%; left: 12%; }
-.star-2 { top: 28%; left: 74%; animation-delay: -3s; }
-.star-3 { top: 55%; left: 88%; animation-delay: -6s; }
-.star-4 { top: 72%; left: 20%; animation-delay: -9s; }
-.star-5 { top: 86%; left: 62%; animation-delay: -12s; }
-.star-6 { top: 38%; left: 7%; animation-delay: -4s; }
-.star-7 { top: 64%; left: 48%; animation-delay: -10s; }
+.star-2 { top: 26%; left: 76%; animation-delay: -2s; }
+.star-3 { top: 55%; left: 90%; animation-delay: -4s; }
+.star-4 { top: 72%; left: 18%; animation-delay: -1s; animation-duration: 9s; }
+.star-5 { top: 88%; left: 64%; animation-delay: -5s; }
+.star-6 { top: 40%; left: 5%; animation-delay: -3s; animation-duration: 10s; }
+.star-7 { top: 64%; left: 48%; animation-delay: -6s; animation-duration: 8s; }
 
 
 /* =========================================================
-   04. SVG ICON SYSTEM
+   04. ÍCONES SVG (marca do header)
    ========================================================= */
 
 .svg-sprite {
@@ -129,11 +161,7 @@ svg use {
   vector-effect: non-scaling-stroke;
 }
 
-.brand-mark,
-.section-symbol svg,
-.project-symbol,
-.hero-diagram svg,
-.celestial-divider svg {
+.brand-mark {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.25;
@@ -159,7 +187,7 @@ svg use {
 .site-header {
   position: relative;
   z-index: 20;
-  min-height: 84px;
+  min-height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -169,36 +197,36 @@ svg use {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.65rem;
   color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.28em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
 }
 
 .brand-mark {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   flex: 0 0 auto;
-  color: var(--accent-strong);
+  color: var(--lunar-soft);
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
+  gap: 1.75rem;
 }
 
 .nav {
   display: flex;
-  gap: 1.8rem;
-  color: var(--muted);
+  gap: 1.75rem;
+  color: var(--text-soft);
   font-size: 0.86rem;
 }
 
 .nav a {
   position: relative;
+  padding-block: 0.35rem;
   transition: color 180ms ease;
 }
 
@@ -207,10 +235,10 @@ svg use {
   position: absolute;
   left: 0;
   right: 100%;
-  bottom: -0.45rem;
+  bottom: 0;
   height: 1px;
-  background: var(--gold);
-  transition: right 180ms ease;
+  background: var(--lunar);
+  transition: right 220ms ease;
 }
 
 .nav a:hover,
@@ -226,27 +254,24 @@ svg use {
 .language-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 0.34rem;
-  min-height: 34px;
-  padding: 0 0.72rem;
-  border: 1px solid var(--border);
+  gap: 0.3rem;
+  min-height: 32px;
+  padding: 0 0.6rem;
+  border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(8, 18, 35, 0.52);
-  color: rgba(154, 171, 199, 0.62);
-  backdrop-filter: blur(10px);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
+  color: var(--faint);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
 }
 
 .language-button {
   appearance: none;
   border: 0;
-  padding: 0.3rem 0.08rem;
+  padding: 0.3rem 0.1rem;
   background: transparent;
   color: var(--muted);
   cursor: pointer;
-  transition: color 160ms ease, text-shadow 160ms ease;
+  transition: color 160ms ease;
 }
 
 .language-button:hover,
@@ -255,636 +280,593 @@ svg use {
   color: var(--text);
 }
 
-.language-button:focus-visible {
-  outline: 1px solid var(--border-strong);
-  outline-offset: 3px;
-}
-
 .language-button.is-active {
-  text-shadow: 0 0 14px rgba(156, 185, 229, 0.4);
-}
-
-
-/* =========================================================
-   06. SHARED TYPOGRAPHY / SECTIONS
-   ========================================================= */
-
-.eyebrow,
-.status,
-.project-index,
-.panel-label,
-.project-kind,
-.observer-label {
-  font-family: var(--font-mono);
-}
-
-.eyebrow {
-  margin: 0 0 1.5rem;
-  color: rgba(218, 229, 245, 0.72);
-  font-size: 0.67rem;
-  letter-spacing: 0.2em;
-}
-
-.hero h1,
-.section-heading h2,
-.observer-copy h2,
-.project-card h3 {
-  font-family: var(--font-display);
-  font-optical-sizing: auto;
-  text-wrap: balance;
-}
-
-.hero h1,
-.section-heading h2,
-.observer-copy h2 {
-  font-weight: 500;
-}
-
-.hero h1 em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--accent-strong);
-}
-
-.project-card h3 {
   font-weight: 600;
 }
 
-.hero-text,
-.section-text,
-.project-card p {
-  color: var(--muted);
-}
-
-.content-section {
-  position: relative;
-  padding: 7rem 0;
-  border-top: 1px solid rgba(181, 199, 226, 0.1);
-}
-
-.section-heading {
-  max-width: 820px;
-}
-
-.section-heading.with-symbol {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: start;
-  gap: 1.2rem;
-}
-
-.section-heading h2 {
-  margin: 0;
-  color: var(--text);
-  font-size: clamp(3rem, 5.6vw, 5.2rem);
-  line-height: 0.98;
-  letter-spacing: -0.015em;
-}
-
-.section-symbol {
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  margin-top: 0.15rem;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(19, 38, 68, 0.62), rgba(8, 18, 35, 0.38));
-  color: var(--accent-strong);
-  opacity: 0.7;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
-}
-
-.section-symbol svg {
-  width: 32px;
-  height: 32px;
-}
-
-.section-text {
-  max-width: 620px;
-  margin-top: 1.75rem;
-  font-size: 1.02rem;
-  font-weight: 400;
-  line-height: 1.8;
+.language-button:focus-visible,
+.nav a:focus-visible,
+.brand:focus-visible,
+.text-link:focus-visible,
+.footer-links a:focus-visible {
+  outline: 1px solid var(--lunar);
+  outline-offset: 4px;
 }
 
 
 /* =========================================================
-   07. HERO
+   06. TIPOGRAFIA COMPARTILHADA
+   Serif (Fraunces) só em títulos e nomes de projetos;
+   Manrope no resto.
    ========================================================= */
 
-/* Arte na coluna esquerda, texto na direita. A ordem do HTML
-   (texto primeiro) é mantida para leitores de tela e para o mobile. */
-.hero {
-  position: relative;
-  min-height: min(820px, calc(100vh - 84px));
-  display: grid;
-  grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
-  grid-template-areas: "visual copy";
-  align-items: center;
-  gap: 4rem;
-  padding: 5.5rem 0 7rem;
-}
-
-.hero::before {
-  content: "RA / OBSERVATION LOG — 2026";
-  position: absolute;
-  right: 0;
-  bottom: 2.25rem;
-  color: rgba(154, 171, 199, 0.3);
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.16em;
-  pointer-events: none;
-}
-
-.hero-copy {
-  grid-area: copy;
-  min-width: 0;
-  align-self: center;
-}
-
-.hero h1 {
-  max-width: 620px;
+h1,
+h2,
+h3 {
   margin: 0;
-  font-size: clamp(3.6rem, 6vw, 5.9rem);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
-.hero-text {
-  max-width: 520px;
-  margin: 1.9rem 0 0;
-  color: #a9b6c9;
-  font-size: 1.06rem;
-  font-weight: 400;
+.eyebrow {
+  margin: 0 0 0.9rem;
+  color: var(--lunar);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.section-head h2,
+.section-heading h2 {
+  font-size: clamp(1.7rem, 1.3rem + 1.3vw, 2.35rem);
+  line-height: 1.15;
+}
+
+.section-text {
+  max-width: var(--measure);
+  margin: 1.1rem 0 0;
+  color: var(--text-soft);
+  font-size: 1rem;
   line-height: 1.75;
 }
+
+.kind {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-soft);
+  font-size: 0.76rem;
+  font-weight: 500;
+}
+
+.status::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  flex: none;
+  background: var(--lunar);
+  transform: rotate(45deg);
+}
+
+.status--writing::before {
+  background: var(--wine-soft);
+}
+
+.status--done::before {
+  background: var(--faint);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  border-bottom: 1px solid transparent;
+  color: var(--lunar-soft);
+  font-size: 0.86rem;
+  font-weight: 500;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.text-link:hover,
+.text-link:focus-visible {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+
+/* =========================================================
+   07. BOTÕES
+   ========================================================= */
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
-  margin-top: 2.2rem;
+  margin-top: 2rem;
 }
 
 .button {
   display: inline-flex;
-  min-height: 44px;
+  min-height: 42px;
   align-items: center;
   justify-content: center;
-  padding: 0 1.1rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  padding: 0 1.25rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
   font-size: 0.84rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
-  transition:
-    transform 180ms ease,
-    background-color 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease;
-}
-
-.button:hover {
-  transform: translateY(-1px);
+  letter-spacing: 0.02em;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 .button:focus-visible {
-  outline: 1px solid var(--gold);
+  outline: 1px solid var(--lunar);
   outline-offset: 4px;
 }
 
 .button-primary {
-  background: #ede9df;
-  color: #07101d;
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--bg);
+}
+
+.button-primary:hover {
+  border-color: var(--lunar-soft);
+  background: var(--lunar-soft);
 }
 
 .button-secondary {
   background: transparent;
+  color: var(--text);
 }
 
 .button-secondary:hover {
-  border-color: var(--border-strong);
+  border-color: var(--lunar);
+}
+
+
+/* =========================================================
+   08. HERO
+   ========================================================= */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  padding: clamp(1.5rem, 4vw, 3.5rem) 0 clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .hero-visual {
-  grid-area: visual;
-  position: relative;
-  min-width: 0;
-  display: grid;
-  place-items: center;
-  isolation: isolate;
-}
-
-/* Sem espelhamento: na arte original o guaxinim olha para a direita,
-   em direção ao texto. */
-.hero-art {
-  position: relative;
-  z-index: 2;
-  width: min(100%, 470px);
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 24px 50px rgba(12, 32, 66, 0.28));
-}
-
-.hero-diagram {
-  position: absolute;
-  z-index: 1;
-  color: rgba(174, 200, 237, 0.13);
-  opacity: 0.42;
-  pointer-events: none;
-}
-
-.hero-diagram-a {
-  width: 275px;
-  height: 275px;
-  left: -3rem;
-  top: 5%;
-  transform: rotate(12deg);
-}
-
-.hero-diagram-b {
-  width: 175px;
-  height: 175px;
-  right: -1rem;
-  bottom: 8%;
-  color: rgba(239, 189, 114, 0.08);
-  transform: rotate(-9deg);
-}
-
-.hero-diagram svg {
-  width: 100%;
-  height: 100%;
-}
-
-.hero-orbit-image {
-  width: 230px;
-  height: auto;
-  opacity: 0.42;
-  transform: rotate(-7deg);
-}
-
-.hero-orbit-image img {
-  width: 100%;
-  height: auto;
-}
-
-
-/* =========================================================
-   08. CELESTIAL DIVIDERS
-   ========================================================= */
-
-.celestial-divider {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 1rem;
-  height: 44px;
-  color: rgba(176, 198, 231, 0.58);
-  opacity: 0.55;
-}
-
-.celestial-divider span {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(181, 198, 255, 0.22));
-}
-
-.celestial-divider span:last-child {
-  background: linear-gradient(90deg, rgba(181, 198, 255, 0.22), transparent);
-}
-
-.celestial-divider svg {
-  width: 30px;
-  height: 30px;
-}
-
-.celestial-section-divider {
-  width: min(100%, 980px);
-  margin: 4rem auto 0;
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   09. ABOUT / OBSERVER
-   ========================================================= */
-
-.observer-section {
-  position: relative;
-}
-
-.observer-frame {
-  position: relative;
-  min-height: 520px;
-  display: grid;
-  place-items: center;
-}
-
-.observer-frame-art {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  opacity: 0.82;
-  pointer-events: none;
-}
-
-.observer-content {
-  position: relative;
-  z-index: 2;
-  width: min(80%, 980px);
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 3.5rem;
-  align-items: center;
-}
-
-.observer-copy h2 {
   margin: 0;
-  font-size: clamp(3.4rem, 6vw, 5.4rem);
-  line-height: 0.98;
-  letter-spacing: -0.015em;
+  display: flex;
+  justify-content: center;
+  animation: rise 800ms ease both;
 }
 
-.observer-copy .section-text {
-  margin-top: 1.4rem;
+.hero-art {
+  width: 100%;
+  max-width: 520px;
 }
 
-.observer-data {
-  display: grid;
-  gap: 1.4rem;
+.hero-copy {
+  min-width: 0;
+  max-width: 31rem;
 }
 
-.observer-data > div {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(197, 215, 236, 0.14);
+.hero h1 {
+  font-size: clamp(2rem, 1.5rem + 1.6vw, 2.9rem);
+  font-weight: 400;
+  line-height: 1.1;
 }
 
-.observer-label {
-  display: block;
-  margin-bottom: 0.35rem;
-  color: var(--gold);
-  font-size: 0.62rem;
-  letter-spacing: 0.15em;
+.hero h1 em {
+  color: var(--lunar-soft);
+  font-style: italic;
+  font-weight: 300;
 }
 
-.observer-data strong {
-  color: var(--text);
-  font-size: 0.9rem;
-  font-weight: 500;
-  line-height: 1.6;
+.hero-text {
+  max-width: 29rem;
+  margin: 1.3rem 0 0;
+  color: var(--text-soft);
+  font-size: 1.02rem;
+  line-height: 1.75;
 }
 
 
 /* =========================================================
-   10. PROJECTS
+   09. DIVISORES ORNAMENTAIS (PNG)
    ========================================================= */
 
+.ornament {
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ornament img {
+  width: min(88%, 500px);
+  opacity: 0.9;
+}
+
+
+/* =========================================================
+   10. MOLDURA CELESTIAL (só na seção Sobre)
+   A moldura foi fatiada em topo / meio / base. Topo e base
+   mantêm a proporção original; entre eles só a barra lateral
+   lisa se repete, então luas e estrelas nunca se deformam.
+   Medidas em cqw = % da largura da própria moldura.
+   ========================================================= */
+
+.frame {
+  container-type: inline-size;
+  position: relative;
+}
+
+.frame-cap {
+  position: relative;
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.frame-body {
+  position: relative;
+  display: flow-root;
+  min-height: 6.24cqw;
+  margin-block: -1px;
+  background: url("assets/ornaments/frame-fill.png") center top / 100% auto repeat-y;
+}
+
+.frame-middle {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* O conteúdo invade a parte vazia do topo e da base, mas para
+   antes dos cantos, das fitas e dos medalhões. */
+.frame-content {
+  position: relative;
+  z-index: 1;
+  margin: -5.77cqw 0 -7.23cqw;
+  padding-inline: max(8.6cqw, 1.6rem);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 2rem 3.5rem;
+  align-items: start;
+}
+
+.about-copy h2 {
+  font-size: clamp(2rem, 1.5rem + 1.6vw, 2.75rem);
+  line-height: 1.05;
+}
+
+.about-facts {
+  margin: 0;
+}
+
+.about-facts > div {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.about-facts > div:first-child {
+  padding-top: 0.2rem;
+}
+
+.about-facts > div:last-child {
+  border-bottom: 0;
+}
+
+/* Sem divisores em volta do Sobre: só espaço. */
+.about {
+  padding-top: clamp(1.5rem, 3.5vw, 2.75rem);
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.about-facts dt {
+  margin-bottom: 0.2rem;
+  color: var(--wine-soft);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.about-facts dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.about-note {
+  margin: 0.9rem 0 0;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   11. PROJETOS — lista editorial, sem cards
+   ========================================================= */
+
+.section-head {
+  max-width: 40rem;
+}
+
+.projects .section-head,
+.elsewhere .section-head {
+  margin-bottom: 2.25rem;
+}
+
+/* Cards dos projetos: ícone, rótulo, nome, uma frase e um link. */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.2rem;
-  margin-top: 3.5rem;
+  gap: 1.1rem;
 }
 
 .project-card {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
-  min-height: 405px;
-  padding: 1.65rem;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(14, 29, 50, 0.58), rgba(7, 15, 28, 0.5));
   display: flex;
   flex-direction: column;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease;
+  min-height: 330px;
+  padding: 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(28, 29, 51, 0.55), rgba(14, 15, 30, 0.5));
+  transition: transform 180ms ease, border-color 180ms ease;
 }
 
+/* moldura interna fina, como nos cards antigos */
 .project-card::before {
   content: "";
   position: absolute;
-  inset: 12px;
+  inset: 10px;
   z-index: -1;
-  border: 1px solid rgba(181, 198, 255, 0.045);
-  border-radius: 8px;
+  border: 1px solid rgba(200, 202, 244, 0.05);
+  border-radius: 6px;
   pointer-events: none;
 }
 
 .project-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(216, 174, 106, 0.28);
-  background: linear-gradient(180deg, rgba(15, 31, 54, 0.68), rgba(7, 15, 28, 0.54));
+  border-color: rgba(163, 166, 240, 0.3);
 }
 
 .project-card:focus-within {
-  border-color: var(--border-strong);
+  border-color: var(--line-strong);
 }
 
-.project-topline {
+.card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.project-index,
-.status {
-  color: var(--muted);
-  font-size: 0.78rem;
-}
-
-.status {
-  padding: 0.34rem 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.015);
-}
-
-.project-symbol {
-  position: absolute;
-  top: 4.4rem;
-  right: 1.25rem;
+.card-icon {
   width: 44px;
-  height: 44px;
-  color: rgba(181, 205, 239, 0.2);
-  opacity: 0.72;
-  pointer-events: none;
 }
 
-.project-card:nth-child(2) .project-symbol {
-  color: rgba(239, 189, 114, 0.2);
+.project-card .kind {
+  margin: 1.6rem 0 0;
 }
 
-.project-kind {
-  margin: 2rem 0 0;
-  color: var(--gold);
-  font-size: 0.63rem;
-  letter-spacing: 0.1em;
+.card-title {
+  margin-top: 0.45rem;
+  font-size: clamp(1.5rem, 1.25rem + 0.7vw, 1.9rem);
+  line-height: 1.15;
 }
 
-.project-card h3 {
-  margin: 3rem 0 0.9rem;
-  font-size: 2.6rem;
-  line-height: 1;
-  letter-spacing: -0.01em;
-}
-
-.project-card p {
-  margin: 0;
-  color: #9eacc1;
+.card-text {
+  margin: 0.75rem 0 0;
+  color: var(--text-soft);
   font-size: 0.92rem;
-  line-height: 1.85;
+  line-height: 1.75;
 }
 
-.project-phase {
+.card-link,
+.card-note {
+  align-self: flex-start;
   margin-top: auto;
-  padding-top: 1.1rem;
-  border-top: 1px solid rgba(181, 199, 226, 0.11);
+  padding-top: 1.25rem;
+}
+
+.card-note {
+  color: var(--wine-soft);
+  font-size: 0.8rem;
+}
+
+/* Fragmentos só se diferencia pela tipografia e por um toque de bordô. */
+.project-card--fragment::before {
+  border-color: rgba(192, 107, 131, 0.14);
+}
+
+.project-card--fragment .card-title {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.project-card--fragment .card-text {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.entry-meta {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.25rem;
+  margin: 0 0 0.55rem;
 }
 
-.project-phase span {
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
+
+
+/* =========================================================
+   12. OUTRAS ÁREAS — usa os mesmos cards dos projetos
+   ========================================================= */
+
+.card-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
 }
 
-.project-phase strong {
-  text-align: right;
-  font-size: 0.78rem;
-  font-weight: 500;
-}
-
-.project-note {
-  margin-top: 1.25rem;
-  color: rgba(201, 214, 235, 0.62);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-}
-
-.text-link {
-  margin-top: 1.25rem;
-  color: #d7e0ef;
-  font-size: 0.84rem;
-  transition: color 160ms ease;
-}
-
-.text-link:hover,
-.text-link:focus-visible {
-  color: var(--gold);
+.card-links .text-link {
+  margin-top: 0;
 }
 
 
 /* =========================================================
-   11. NOW / BUILDING
+   13. AGORA
    ========================================================= */
 
-.building-panel {
-  position: relative;
-  overflow: hidden;
-  margin-top: 3.4rem;
-  padding: 1.6rem;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: rgba(10, 22, 39, 0.46);
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.now-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   gap: 1.5rem;
 }
 
-.building-panel::after {
-  content: "⊙";
+.now-sticker {
+  width: 112px;
+  flex: none;
+  margin-bottom: -0.35rem;
+}
+
+/* Painel em caixa, como o antigo. */
+.now-list {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 0;
+  padding: 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(28, 29, 51, 0.55), rgba(14, 15, 30, 0.5));
+}
+
+/* o círculo apagado no canto do painel antigo */
+.now-list::after {
+  content: "";
   position: absolute;
-  right: 1.3rem;
-  bottom: -1.3rem;
-  color: rgba(156, 185, 229, 0.06);
-  font-size: 7rem;
-  line-height: 1;
+  right: 1.75rem;
+  bottom: -2.6rem;
+  width: 7rem;
+  height: 7rem;
+  border: 4px solid rgba(200, 202, 244, 0.05);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 202, 244, 0.07) 0 9px, transparent 10px);
   pointer-events: none;
 }
 
-.building-panel > div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+.now-list > div {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
 }
 
-.building-panel strong {
-  font-weight: 500;
-}
-
-.panel-label {
+.now-list dt {
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.now-list dd {
+  margin: 0.3rem 0 0;
+  color: var(--text);
+  font-size: 0.98rem;
 }
 
 .signal-dot {
   display: inline-block;
   width: 6px;
   height: 6px;
-  margin-right: 0.35rem;
+  margin-right: 0.45rem;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 10px rgba(142, 168, 255, 0.72);
-  vertical-align: 0.08em;
+  background: var(--lunar);
+  vertical-align: 0.1em;
 }
 
 
 /* =========================================================
-   12. FOOTER
+   14. FOOTER
    ========================================================= */
 
 .footer {
-  position: relative;
-  padding: 2.5rem 0 3rem;
-  border-top: 1px solid rgba(181, 199, 226, 0.1);
-  color: var(--muted);
-  display: grid;
-  grid-template-columns: 1fr auto auto;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 2rem;
-  font-size: 0.8rem;
+  gap: 1rem 1.75rem;
+  margin-top: 1rem;
+  padding: 2.25rem 0 3rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 
-.footer::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: -1px;
-  width: 86px;
-  height: 1px;
-  background: var(--gold);
-  opacity: 0.6;
+.footer-sticker {
+  width: 56px;
+  flex: none;
+}
+
+.footer > div:not(.footer-links) {
+  flex: 1 1 14rem;
 }
 
 .footer strong {
   color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
 }
 
 .footer p {
-  margin: 0.35rem 0 0;
+  margin: 0.2rem 0 0;
 }
 
 .footer-links {
   display: flex;
-  gap: 1.2rem;
+  gap: 1.4rem;
 }
 
 .footer-links a {
@@ -902,301 +884,141 @@ svg use {
 
 
 /* =========================================================
-   13. ANIMATIONS
+   15. ANIMAÇÕES
    ========================================================= */
 
-@keyframes drift {
+@keyframes twinkle {
+  from { opacity: 0.12; }
+  to { opacity: 0.5; }
+}
+
+@keyframes rise {
   from {
-    transform: translateY(0);
-    opacity: 0.28;
+    opacity: 0;
+    transform: translateY(8px);
   }
 
   to {
-    transform: translateY(-12px);
-    opacity: 0.6;
+    opacity: 1;
+    transform: none;
   }
 }
 
 
 /* =========================================================
-   14. RESPONSIVE
+   16. RESPONSIVO
    ========================================================= */
 
-@media (max-width: 900px) {
-  .observer-frame {
-    min-height: auto;
-    padding: 2.8rem 1.5rem;
-  }
-
-  .observer-content {
-    width: min(90%, 720px);
-    grid-template-columns: 1fr;
-    gap: 2.25rem;
-  }
-
-  .observer-frame-art {
-    object-fit: contain;
-  }
-
-  .celestial-section-divider {
-    width: min(78%, 540px);
-  }
-
-  /* Empilha: texto primeiro (mesma ordem do HTML), arte depois. */
+@media (max-width: 860px) {
+  /* Hero empilha: arte em cima, texto embaixo. */
   .hero {
-    min-height: auto;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "copy"
-      "visual";
-    gap: 3rem;
-  }
-
-  .hero h1 {
-    max-width: 640px;
-    font-size: clamp(3.2rem, 10vw, 5rem);
+    gap: 1.75rem;
+    padding-top: 1rem;
   }
 
   .hero-art {
-    width: min(100%, 420px);
+    max-width: 440px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 34rem;
     margin-inline: auto;
   }
 
-  .hero-diagram-a {
-    left: 3%;
-  }
-
-  .hero-diagram-b {
-    right: 8%;
-  }
-
-  .section-heading h2 {
-    font-size: clamp(2.9rem, 9vw, 4.4rem);
-  }
-
-  /* A moldura é horizontal (2,3:1); num bloco empilhado ela era
-     recortada e os ornamentos caíam sobre o texto. Aqui ela dá lugar
-     a uma borda fina com as mesmas cores. */
-  .observer-frame {
-    min-height: auto;
-    padding: 3.5rem 2rem;
-    border: 1px solid var(--border-strong);
-    border-radius: 18px;
-    background: linear-gradient(180deg, rgba(14, 29, 50, 0.42), rgba(7, 15, 28, 0.2));
-  }
-
-  .observer-content {
-    width: min(100%, 720px);
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .observer-frame-art {
-    display: none;
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
   }
 
   .project-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .project-card {
-    min-height: 360px;
+    min-height: 0;
   }
 
-  .project-phase {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .project-phase strong {
-    text-align: left;
-  }
-
-  .building-panel {
-    grid-template-columns: 1fr;
+  .now-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.1rem;
   }
 }
 
-@media (max-width: 620px) {
-.observer-frame {
-  padding: 2.2rem 1rem;
-}
-
-.observer-content {
-  width: 100%;
-}
-
-.celestial-section-divider {
-  width: min(82%, 420px);
-  margin-top: 1.75rem;
-}
-
-  .brand {
-    gap: 0.5rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
+@media (max-width: 560px) {
+  .section,
+  .site-header,
+  .footer {
+    width: min(calc(100% - 2rem), var(--max-width));
   }
 
-  .brand-mark {
-    width: 24px;
-    height: 24px;
+  /* Navegação continua visível: desce para uma segunda linha. */
+  .site-header {
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    min-height: 0;
+    padding-top: 0.9rem;
   }
 
   .header-actions {
-    gap: 0.6rem;
-  }
-
-  .nav {
-    display: none;
+    display: contents;
   }
 
   .language-switcher {
-    min-height: 32px;
-    padding: 0 0.56rem;
-    font-size: 0.62rem;
+    min-height: 30px;
+  }
+
+  .nav {
+    order: 3;
+    width: 100%;
+    gap: 1.5rem;
+    margin-top: 0.75rem;
+    padding: 0.35rem 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.84rem;
   }
 
   .hero {
-    padding: 3rem 0 4.5rem;
-    gap: 2.75rem;
-  }
-
-  .hero::before {
-    display: none;
-  }
-
-  .hero h1 {
-    max-width: 100%;
-    font-size: clamp(2.6rem, 11.5vw, 3.6rem);
-    line-height: 1;
+    padding-top: 1.5rem;
   }
 
   .hero-text,
   .section-text {
-    max-width: none;
     font-size: 0.98rem;
     line-height: 1.7;
   }
 
-  .hero-actions {
-    flex-direction: column;
+  .hero-actions .button {
+    flex: 1 1 auto;
   }
-
-  .button {
-    width: 100%;
-  }
-
-  .hero-visual {
-    width: 100%;
-    overflow: visible;
-  }
-
-  .hero-art {
-    width: min(88vw, 340px);
-    max-width: 100%;
-  }
-
-  .hero-diagram-a {
-    width: 210px;
-    height: 210px;
-    left: -8%;
-    top: 0;
-  }
-
-  .hero-diagram-b {
-    width: 125px;
-    height: 125px;
-    right: 0;
-    bottom: 5%;
-  }
-
-  .celestial-divider {
-    height: 34px;
-    gap: 0.7rem;
-  }
-
-  .celestial-divider svg {
-    width: 25px;
-    height: 25px;
-  }
-
-  .content-section {
-    padding: 5rem 0;
-  }
-
-  .section-heading.with-symbol {
-    grid-template-columns: 42px minmax(0, 1fr);
-    gap: 0.8rem;
-  }
-
-  .section-symbol {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-  }
-
-  .section-symbol svg {
-    width: 26px;
-    height: 26px;
-  }
-
-  .section-heading h2 {
-    font-size: clamp(2.55rem, 10vw, 3.75rem);
-    line-height: 1;
-  }
-
-  .observer-frame {
-    padding: 3rem 1.2rem;
-  }
-
-  .observer-content {
-    width: 100%;
-  }
-
-  .observer-copy h2 {
-    font-size: clamp(2.8rem, 13vw, 3.8rem);
-  }
-
-  .observer-data strong {
-    font-size: 0.82rem;
-  }
-
-  .celestial-section-divider {
-  display: block;
-  width: min(72%, 620px);
-  height: auto;
-  margin: 2rem auto 0;
-  opacity: 0.76;
-  pointer-events: none;
-}
 
   .project-card {
-    min-height: 340px;
-    padding: 1.25rem;
+    padding: 1.3rem;
   }
 
-  .project-symbol {
-    top: 4.1rem;
-    right: 1rem;
-    width: 52px;
-    height: 52px;
+  .card-icon {
+    width: 40px;
   }
 
-  .project-card h3 {
-    margin-top: 2.5rem;
-    font-size: 2.2rem;
+  .project-card .kind {
+    margin-top: 1.25rem;
   }
 
-  .building-panel {
-    margin-top: 2rem;
-    padding: 1.25rem;
+  .now-list {
+    padding: 1.3rem;
+  }
+
+  .now-sticker {
+    width: 84px;
   }
 
   .footer {
-    grid-template-columns: 1fr;
-    align-items: start;
-    gap: 1rem;
+    gap: 0.75rem 1.25rem;
+  }
+
+  .footer-sticker {
+    width: 48px;
   }
 }
 
