@@ -6,7 +6,7 @@
   <!-- CSP: só carrega arquivos do próprio site. Ver README > Segurança. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <meta name="description" content="Nocturne — a celestial Vencord theme built with deep navy, lunar blue and restrained gold." />
-  <meta name="theme-color" content="#07101f" />
+  <meta name="theme-color" content="#0b0c1a" />
   <title>Nocturne — Rakumi</title>
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
   <link rel="stylesheet" href="style.css" />
@@ -36,7 +36,7 @@
 
 
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="Rakumi">
+    <a class="brand" href="index.html" aria-label="Rakumi home" data-i18n-aria-label="nav.home">
       <svg class="brand-mark" aria-hidden="true"><use href="#icon-compass"></use></svg><span>RAKUMI</span>
     </a>
     <div class="header-actions">
@@ -51,7 +51,7 @@
   <main class="section nocturne-main">
     <section class="nocturne-intro" aria-labelledby="nocturne-title">
       <p class="eyebrow" data-i18n="nocturne.kind">THEME / 04</p>
-      <div class="section-heading"><h2 id="nocturne-title">NOCTURNE</h2></div>
+      <div class="section-heading"><h1 id="nocturne-title">NOCTURNE</h1></div>
       <p class="nocturne-subtitle" data-i18n="nocturne.subtitle">A quieter orbit for Vencord.</p>
       <p class="section-text" data-i18n="nocturne.description">A celestial Vencord theme built around deep navy surfaces, lunar blue and restrained gold.</p>
       <div class="hero-actions">
@@ -61,7 +61,7 @@
       <p class="nocturne-feedback" data-copy-status role="status" aria-live="polite"></p>
     </section>
     <section class="nocturne-block" aria-labelledby="palette-title">
-      <h3 class="eyebrow" id="palette-title" data-i18n="nocturne.palette">Palette</h3>
+      <h2 class="eyebrow" id="palette-title" data-i18n="nocturne.palette">Palette</h2>
       <ul class="nocturne-palette">
         <li><span class="swatch-030916" aria-hidden="true"></span><code>#030916</code></li>
         <li><span class="swatch-061225" aria-hidden="true"></span><code>#061225</code></li>
@@ -72,7 +72,7 @@
     </section>
     <figure class="nocturne-block nocturne-figure">
       <figcaption>
-        <h3 class="eyebrow" data-i18n="nocturne.preview">Theme preview</h3>
+        <h2 class="eyebrow" data-i18n="nocturne.preview">Theme preview</h2>
         <p class="section-text" data-i18n="nocturne.previewNote">An HTML/CSS palette study of the theme’s surfaces and accents.</p>
       </figcaption>
       <div class="nocturne-preview">
@@ -99,7 +99,7 @@
           <h3 data-i18n="nocturne.online">Online</h3>
           <p class="nocturne-path" data-i18n="nocturne.onlinePath">Settings → Vencord → Themes → Online Themes</p>
           <p data-i18n="nocturne.onlineInstructions">Paste the theme URL below and enable Nocturne.</p>
-          <input class="nocturne-url" type="text" readonly data-theme-url aria-label="Online theme URL" data-i18n-aria-label="nocturne.copy" />
+          <input class="nocturne-url" type="text" readonly data-theme-url aria-label="Online theme URL" data-i18n-aria-label="nocturne.urlLabel" />
         </article>
         <article class="nocturne-method">
           <h3 data-i18n="nocturne.local">Local</h3>
