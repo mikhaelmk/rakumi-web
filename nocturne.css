@@ -8,7 +8,13 @@
 .nocturne-palette { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; list-style: none; padding: 0; margin: 1.5rem 0 0; }
 .nocturne-palette li { overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
 .nocturne-palette span { display: block; height: 64px; background: var(--swatch); }
-.nocturne-palette code { display: block; padding: .8rem; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: .75rem; }
+/* Cores da paleta em classes (sem style inline, por causa da CSP). */
+.swatch-030916 { --swatch: #030916; }
+.swatch-061225 { --swatch: #061225; }
+.swatch-09182d { --swatch: #09182D; }
+.swatch-9bbbe2 { --swatch: #9BBBE2; }
+.swatch-efc47a { --swatch: #EFC47A; }
+.nocturne-palette code { display: block; padding: .8rem; color: var(--muted); font-family: monospace; font-size: .75rem; }
 .nocturne-figure .section-text { margin-top: 0; }
 .nocturne-preview { display: grid; grid-template-columns: 180px minmax(0, 1fr); overflow: hidden; margin-top: 1.5rem; border: 1px solid rgba(155,187,226,.16); border-radius: 12px; color: #9BBBE2; background: #030916; }
 .nocturne-preview-sidebar { background: #061225; padding: 1.5rem 1rem; font-size: .84rem; }
@@ -31,7 +37,7 @@
 .nocturne-method h3 { margin-top: 0; font-weight: 500; }
 .nocturne-method p { color: var(--muted); font-size: .92rem; line-height: 1.85; }
 .nocturne-path { color: var(--accent) !important; }
-.nocturne-url { width: 100%; min-width: 0; padding: .85rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--accent); font-family: "IBM Plex Mono", monospace; font-size: .75rem; }
+.nocturne-url { width: 100%; min-width: 0; padding: .85rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--accent); font-family: monospace; font-size: .75rem; }
 .nocturne-page :is(button, a, input):focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 @media (max-width: 620px) {
   .nocturne-main { padding: 3rem 0 5rem; }

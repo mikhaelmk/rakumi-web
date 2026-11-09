@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- CSP: só carrega arquivos do próprio site. Ver README > Segurança. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <meta name="description" content="Nocturne — a celestial Vencord theme built with deep navy, lunar blue and restrained gold." />
   <meta name="theme-color" content="#07101f" />
   <title>Nocturne — Rakumi</title>
@@ -61,11 +63,11 @@
     <section class="nocturne-block" aria-labelledby="palette-title">
       <h3 class="eyebrow" id="palette-title" data-i18n="nocturne.palette">Palette</h3>
       <ul class="nocturne-palette">
-        <li><span style="--swatch: #030916" aria-hidden="true"></span><code>#030916</code></li>
-        <li><span style="--swatch: #061225" aria-hidden="true"></span><code>#061225</code></li>
-        <li><span style="--swatch: #09182D" aria-hidden="true"></span><code>#09182D</code></li>
-        <li><span style="--swatch: #9BBBE2" aria-hidden="true"></span><code>#9BBBE2</code></li>
-        <li><span style="--swatch: #EFC47A" aria-hidden="true"></span><code>#EFC47A</code></li>
+        <li><span class="swatch-030916" aria-hidden="true"></span><code>#030916</code></li>
+        <li><span class="swatch-061225" aria-hidden="true"></span><code>#061225</code></li>
+        <li><span class="swatch-09182d" aria-hidden="true"></span><code>#09182D</code></li>
+        <li><span class="swatch-9bbbe2" aria-hidden="true"></span><code>#9BBBE2</code></li>
+        <li><span class="swatch-efc47a" aria-hidden="true"></span><code>#EFC47A</code></li>
       </ul>
     </section>
     <figure class="nocturne-block nocturne-figure">

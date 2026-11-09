@@ -1,10 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Manrope:wght@400;500;600&display=swap");
-
 /* =========================================================
    Rakumi — style.css
    Usado pelas duas páginas (index.html e nocturne.html).
    nocturne.css só acrescenta o que é exclusivo do Nocturne.
 
+    0. Fontes
     1. Tokens
     2. Base
     3. Layout
@@ -21,6 +20,38 @@
    14. Animações
    15. Responsivo
    ========================================================= */
+
+
+/* =========================================================
+   0. FONTES
+   Hospedadas no próprio site (assets/fonts), sem Google Fonts.
+   Arquivos variáveis com o subconjunto latino (PT/EN/FR):
+   um arquivo cobre todos os pesos. Licença: SIL OFL 1.1.
+   ========================================================= */
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url("assets/fonts/fraunces-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url("assets/fonts/fraunces-italic-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("assets/fonts/manrope-latin.woff2") format("woff2");
+}
 
 
 /* =========================================================
