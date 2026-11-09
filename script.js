@@ -37,7 +37,8 @@ const translations = {
     "nav.building": "Now",
     "language.aria": "Language",
     "hero.eyebrow": "PERSONAL ARCHIVE · CODE · FICTION",
-    "hero.title": "Code, stories<br /><em>and other obsessions</em>",
+    "hero.titleLine1": "Code, stories",
+    "hero.titleLine2": "and other obsessions",
     "hero.text": "Rakumi is where I keep the things I code, write and invent when an idea refuses to leave me alone.",
     "hero.explore": "See what's here",
     "hero.alt": "My character in headphones, coding beside the raccoon inside a gothic medallion under a full moon",
@@ -126,7 +127,8 @@ const translations = {
     "nav.building": "Agora",
     "language.aria": "Idioma",
     "hero.eyebrow": "ARQUIVO PESSOAL · CÓDIGO · FICÇÃO",
-    "hero.title": "Código, histórias<br /><em>e outras obsessões</em>",
+    "hero.titleLine1": "Código, histórias",
+    "hero.titleLine2": "e outras obsessões",
     "hero.text": "Rakumi é onde eu guardo o que programo, escrevo e invento quando uma ideia resolve não me deixar em paz.",
     "hero.explore": "Ver o que tem aqui",
     "hero.alt": "Meu personagem de fones programando ao lado do guaxinim, dentro de um medalhão gótico sob a lua cheia",
@@ -199,10 +201,6 @@ function applyLanguage(language, { persist = true } = {}) {
     element.textContent = t(nextLanguage, element.dataset.i18n);
   });
 
-  document.querySelectorAll("[data-i18n-html]").forEach((element) => {
-    element.innerHTML = t(nextLanguage, element.dataset.i18nHtml);
-  });
-
   document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
     element.setAttribute("aria-label", t(nextLanguage, element.dataset.i18nAriaLabel));
   });
@@ -217,14 +215,32 @@ function applyLanguage(language, { persist = true } = {}) {
     button.setAttribute("aria-pressed", String(isActive));
   });
 
-  if (persist) localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+  if (persist) saveLanguage(nextLanguage);
+}
+
+// localStorage can throw (blocked cookies, some private modes).
+// The choice is only a convenience, so failures are ignored.
+function readStoredLanguage() {
+  try {
+    return localStorage.getItem(LANGUAGE_STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function saveLanguage(language) {
+  try {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+  } catch {
+    // Without storage the page still works; it just won't remember the choice.
+  }
 }
 
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => applyLanguage(button.dataset.lang));
 });
 
-const storedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+const storedLanguage = readStoredLanguage();
 const browserLanguage = navigator.language?.toLowerCase().startsWith("pt") ? "pt" : "en";
 applyLanguage(storedLanguage || browserLanguage, { persist: Boolean(storedLanguage) });
 
