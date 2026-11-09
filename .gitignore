@@ -1,0 +1,26 @@
+# Segredos e credenciais: nunca versionar
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Dependências e saídas de ferramentas/build
+node_modules/
+dist/
+.next/
+.vinext/
+.wrangler/
+
+# Editores, logs e temporários
+.vscode/
+.idea/
+*.log
+*.tmp
+*~
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+desktop.ini
