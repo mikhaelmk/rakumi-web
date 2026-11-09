@@ -174,11 +174,6 @@ svg use {
   stroke: none;
 }
 
-.icon-gold {
-  fill: var(--gold);
-  stroke: none;
-}
-
 
 /* =========================================================
    05. HEADER
@@ -724,15 +719,6 @@ h3 {
   font-weight: 300;
 }
 
-.entry-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem 1.25rem;
-  margin: 0 0 0.55rem;
-}
-
-
 
 /* =========================================================
    12. OUTRAS ÁREAS — usa os mesmos cards dos projetos
@@ -876,10 +862,6 @@ h3 {
 .footer-links a:hover,
 .footer-links a:focus-visible {
   color: var(--text);
-}
-
-.footer-status {
-  display: none;
 }
 
 
