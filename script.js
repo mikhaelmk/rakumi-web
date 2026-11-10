@@ -40,7 +40,7 @@ const translations = {
     "hero.titleLine2": "and other obsessions",
     "hero.text": "Rakumi is where I keep the things I code, write and invent when an idea refuses to leave me alone.",
     "hero.explore": "See what's here",
-    "hero.alt": "My character in headphones, coding beside the raccoon inside a gothic medallion under a full moon",
+    "hero.alt": "Pixel-art emblem: my character in headphones coding next to the raccoon under a full moon",
 
     "about.eyebrow": "01 — OBSERVER",
     "about.title": "Mikael",
@@ -142,7 +142,7 @@ const translations = {
     "hero.titleLine2": "e outras obsessões",
     "hero.text": "Rakumi é onde eu guardo o que programo, escrevo e invento quando uma ideia resolve não me deixar em paz.",
     "hero.explore": "Ver o que tem aqui",
-    "hero.alt": "Meu personagem de fones programando ao lado do guaxinim, dentro de um medalhão gótico sob a lua cheia",
+    "hero.alt": "Emblema em pixel art: meu personagem de fones programando ao lado do guaxinim sob a lua cheia",
 
     "about.eyebrow": "01 — OBSERVADOR",
     "about.title": "Mikael",

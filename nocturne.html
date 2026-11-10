@@ -6,24 +6,13 @@
   <!-- CSP: só carrega arquivos do próprio site. Ver README > Segurança. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <meta name="description" content="Nocturne — a celestial Vencord theme built with deep navy, lunar blue and restrained gold." />
-  <meta name="theme-color" content="#0b0c1a" />
+  <meta name="theme-color" content="#0d0a1c" />
   <title>Nocturne — Rakumi</title>
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="nocturne.css" />
 </head>
 <body class="nocturne-page" data-i18n-title="nocturne.metaTitle" data-i18n-description="nocturne.metaDescription">
-  <svg class="svg-sprite" aria-hidden="true" width="0" height="0">
-    <defs>
-      <symbol id="icon-compass" viewBox="0 0 64 64">
-        <circle cx="32" cy="32" r="9" />
-        <path d="M32 3v15M32 46v15M3 32h15M46 32h15" />
-        <path d="M32 13 36 28 51 32 36 36 32 51 28 36 13 32 28 28Z" />
-        <circle cx="32" cy="32" r="2.5" class="icon-fill" />
-      </symbol>
-    </defs>
-  </svg>
-
   <div class="sky" aria-hidden="true">
     <span class="star star-1"></span>
     <span class="star star-2"></span>
@@ -37,7 +26,7 @@
 
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="Rakumi home" data-i18n-aria-label="nav.home">
-      <svg class="brand-mark" aria-hidden="true"><use href="#icon-compass"></use></svg><span>RAKUMI</span>
+      <img class="brand-mark" src="assets/icons/icon-moon.png" alt="" width="128" height="127" /><span>RAKUMI</span>
     </a>
     <div class="header-actions">
       <a class="text-link nocturne-back" href="index.html#projects" data-i18n="nocturne.back">← Back</a>

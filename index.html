@@ -6,20 +6,18 @@
   <!-- CSP: só carrega arquivos do próprio site. Ver README > Segurança. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <meta name="description" content="Rakumi — code, stories and experiments built under the moon." />
-  <meta name="theme-color" content="#0b0c1a" />
+  <meta name="theme-color" content="#0d0a1c" />
   <title>Rakumi — Code, stories & other obsessions</title>
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- Estrela de 4 pontas desenhada em "pixels" (grade 7x7): fica nítida em qualquer tamanho. -->
   <svg class="svg-sprite" aria-hidden="true" width="0" height="0">
     <defs>
-      <symbol id="icon-compass" viewBox="0 0 64 64">
-        <circle cx="32" cy="32" r="9" />
-        <path d="M32 3v15M32 46v15M3 32h15M46 32h15" />
-        <path d="M32 13 36 28 51 32 36 36 32 51 28 36 13 32 28 28Z" />
-        <circle cx="32" cy="32" r="2.5" class="icon-fill" />
+      <symbol id="px-star" viewBox="0 0 7 7">
+        <path d="M3 0h1v2H3zM0 3h2v1H0zM5 3h2v1H5zM3 5h1v2H3zM2 2h3v3H2z" />
       </symbol>
     </defs>
   </svg>
@@ -36,15 +34,15 @@
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Rakumi home" data-i18n-aria-label="nav.home">
-      <svg class="brand-mark" aria-hidden="true"><use href="#icon-compass"></use></svg>
+      <img class="brand-mark" src="assets/icons/icon-moon.png" alt="" width="128" height="127" />
       <span>RAKUMI</span>
     </a>
 
     <div class="header-actions">
       <nav class="nav" aria-label="Primary navigation" data-i18n-aria-label="nav.aria">
-        <a href="#about" data-i18n="nav.about">About</a>
-        <a href="#projects" data-i18n="nav.projects">Projects</a>
-        <a href="#building" data-i18n="nav.building">Now</a>
+        <a href="#about"><svg class="px-star" aria-hidden="true"><use href="#px-star"></use></svg><span data-i18n="nav.about">About</span></a>
+        <a href="#projects"><svg class="px-star" aria-hidden="true"><use href="#px-star"></use></svg><span data-i18n="nav.projects">Projects</span></a>
+        <a href="#building"><svg class="px-star" aria-hidden="true"><use href="#px-star"></use></svg><span data-i18n="nav.building">Now</span></a>
       </nav>
 
       <div class="language-switcher" role="group" aria-label="Language" data-i18n-aria-label="language.aria">
@@ -60,11 +58,11 @@
     <section class="hero section">
       <figure class="hero-visual">
         <picture>
-          <source srcset="assets/art/oc-emblem.webp" type="image/webp" />
+          <source srcset="assets/art/hero-coder-emblem.webp" type="image/webp" />
           <img
             class="hero-art"
-            src="assets/art/oc-emblem.png"
-            alt="My character in headphones, coding beside the raccoon inside a gothic medallion under a full moon"
+            src="assets/art/hero-coder-emblem.png"
+            alt="Pixel-art emblem: my character in headphones coding next to the raccoon under a full moon"
             data-i18n-alt="hero.alt"
             width="1100"
             height="1100"
@@ -86,12 +84,16 @@
       </div>
     </section>
 
-    <!-- SOBRE: único lugar com a moldura celestial. -->
+    <div class="divider section" aria-hidden="true">
+      <img src="assets/dividers/divider-lunar.webp" alt="" width="1120" height="160" loading="lazy" />
+    </div>
+
+    <!-- SOBRE: único lugar com a moldura pixel (código, lua e livros). -->
     <section id="about" class="section block about">
       <div class="frame">
-        <img class="frame-cap" src="assets/ornaments/frame-top.png" alt="" width="1923" height="327" loading="lazy" />
+        <img class="frame-cap" src="assets/frames/frame-code-top.webp" alt="" width="1933" height="211" loading="lazy" />
         <div class="frame-body">
-          <img class="frame-middle" src="assets/ornaments/frame-middle.png" alt="" width="1923" height="120" loading="lazy" />
+          <img class="frame-middle" src="assets/frames/frame-code-middle.webp" alt="" width="1933" height="310" loading="lazy" />
           <div class="frame-content about-grid">
             <div class="about-copy">
               <p class="eyebrow" data-i18n="about.eyebrow">01 — OBSERVER</p>
@@ -124,11 +126,15 @@
             </div>
           </div>
         </div>
-        <img class="frame-cap" src="assets/ornaments/frame-bottom.png" alt="" width="1923" height="311" loading="lazy" />
+        <img class="frame-cap" src="assets/frames/frame-code-bottom.webp" alt="" width="1933" height="268" loading="lazy" />
       </div>
     </section>
 
-    <!-- PROJETOS: cards com ícone, nome, uma frase e um link. -->
+    <div class="divider section" aria-hidden="true">
+      <img src="assets/dividers/divider-code.webp" alt="" width="1120" height="181" loading="lazy" />
+    </div>
+
+    <!-- PROJETOS: cada card tem o seu ícone pixel-art. -->
     <section id="projects" class="section block projects">
       <header class="section-head">
         <p class="eyebrow" data-i18n="projects.eyebrow">02 — PROJECTS</p>
@@ -138,7 +144,7 @@
       <div class="project-grid">
         <article class="project-card">
           <div class="card-top">
-            <img class="card-icon" src="assets/icons/icon-terminal.png" alt="" width="106" height="112" loading="lazy" />
+            <img class="card-icon" src="assets/icons/icon-laptop.png" alt="" width="128" height="119" loading="lazy" />
             <span class="status" data-i18n="projects.ordo.status">In Development</span>
           </div>
           <p class="kind" data-i18n="projects.ordo.kind">CODE / 01</p>
@@ -151,7 +157,7 @@
 
         <article class="project-card project-card--fragment">
           <div class="card-top">
-            <img class="card-icon" src="assets/icons/icon-book.png" alt="" width="105" height="112" loading="lazy" />
+            <img class="card-icon" src="assets/icons/icon-book.png" alt="" width="128" height="121" loading="lazy" />
             <span class="status status--writing" data-i18n="projects.fragments.status">Writing</span>
           </div>
           <p class="kind" data-i18n="projects.fragments.kind">FRAGMENT / 02</p>
@@ -164,7 +170,7 @@
 
         <article class="project-card">
           <div class="card-top">
-            <img class="card-icon" src="assets/icons/icon-gamepad.png" alt="" width="105" height="112" loading="lazy" />
+            <img class="card-icon" src="assets/icons/icon-game.png" alt="" width="128" height="106" loading="lazy" />
             <span class="status" data-i18n="projects.channel.status">Preparing</span>
           </div>
           <p class="kind" data-i18n="projects.channel.kind">CHANNEL / 03</p>
@@ -177,8 +183,8 @@
       </div>
     </section>
 
-    <div class="ornament section" aria-hidden="true">
-      <img src="assets/ornaments/divider-crescents.png" alt="" width="1600" height="224" loading="lazy" />
+    <div class="divider section" aria-hidden="true">
+      <img src="assets/dividers/divider-hourglass.webp" alt="" width="1120" height="229" loading="lazy" />
     </div>
 
     <!-- OUTRAS ÁREAS -->
@@ -191,7 +197,7 @@
       <div class="project-grid">
         <article class="project-card">
           <div class="card-top">
-            <img class="card-icon" src="assets/icons/icon-moon.png" alt="" width="108" height="112" loading="lazy" />
+            <img class="card-icon" src="assets/icons/icon-chat.png" alt="" width="128" height="113" loading="lazy" />
             <span class="status" data-i18n="nocturne.status">Released</span>
           </div>
           <p class="kind" data-i18n="nocturne.kind">THEME / 04</p>
@@ -205,7 +211,7 @@
 
         <article class="project-card">
           <div class="card-top">
-            <img class="card-icon" src="assets/icons/icon-database.png" alt="" width="104" height="112" loading="lazy" />
+            <img class="card-icon" src="assets/icons/icon-link.png" alt="" width="128" height="123" loading="lazy" />
             <span class="status status--done" data-i18n="projects.train.status">Completed</span>
           </div>
           <p class="kind" data-i18n="projects.train.kind">CODE / 05</p>
@@ -218,7 +224,7 @@
 
         <article class="project-card">
           <div class="card-top">
-            <img class="card-icon" src="assets/icons/icon-rakumi.png" alt="" width="105" height="112" loading="lazy" />
+            <img class="card-icon" src="assets/icons/icon-moon.png" alt="" width="128" height="127" loading="lazy" />
             <span class="status" data-i18n="projects.rakumi.status">Always changing</span>
           </div>
           <p class="kind" data-i18n="projects.rakumi.kind">SITE / 06</p>
@@ -238,7 +244,7 @@
           <p class="eyebrow" data-i18n="building.eyebrow">04 — NOW</p>
           <h2 data-i18n="building.title">What is open on my desk</h2>
         </header>
-        <img class="now-sticker" src="assets/art/raccoon-laptop.png" alt="" width="240" height="218" loading="lazy" />
+        <img class="now-sticker" src="assets/art/raccoon-coding.png" alt="" width="258" height="260" loading="lazy" />
       </div>
 
       <dl class="now-list">
@@ -256,10 +262,14 @@
         </div>
       </dl>
     </section>
+
+    <div class="divider divider--quiet section" aria-hidden="true">
+      <img src="assets/dividers/divider-footer.webp" alt="" width="1120" height="55" loading="lazy" />
+    </div>
   </main>
 
   <footer class="footer">
-    <img class="footer-sticker" src="assets/art/raccoon-sleeping.png" alt="" width="128" height="114" loading="lazy" />
+    <img class="footer-sticker" src="assets/art/raccoon-sleeping.png" alt="" width="150" height="137" loading="lazy" />
     <div>
       <strong>RAKUMI</strong>
       <p data-i18n="footer.tagline">Code, fiction and a few obsessions</p>

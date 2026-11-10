@@ -3,6 +3,10 @@
    Usado pelas duas páginas (index.html e nocturne.html).
    nocturne.css só acrescenta o que é exclusivo do Nocturne.
 
+   Linguagem visual: pixel art gótico-lunar. As imagens são
+   pixel art em alta resolução; o CSS só acrescenta detalhes
+   "de pixel" (estrelinhas, cantos) feitos com quadrados.
+
     0. Fontes
     1. Tokens
     2. Base
@@ -12,8 +16,8 @@
     6. Tipografia e rótulos
     7. Botões
     8. Hero
-    9. Divisor ornamental
-   10. Sobre e moldura celestial
+    9. Divisores
+   10. Sobre e moldura pixel
    11. Cards (Projetos e Outras áreas)
    12. Agora
    13. Rodapé
@@ -53,33 +57,44 @@
   src: url("assets/fonts/manrope-latin.woff2") format("woff2");
 }
 
+/* Só para detalhes técnicos: rótulos, status, idioma. */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("assets/fonts/jetbrains-mono-latin.woff2") format("woff2");
+}
+
 
 /* =========================================================
    1. TOKENS
-   Paleta tirada das artes (contornos lavanda, fitas bordô,
-   prata/marfim, navy quase preto da moldura).
+   Cores tiradas das artes pixel (fundo roxo-preto do emblema,
+   lavanda dos divisores, vinho das fitas, marfim das luas).
    ========================================================= */
 
 :root {
-  --bg: #0b0c1a;            /* azul-preto */
-  --bg-deep: #07070f;
-  --panel-bg: linear-gradient(180deg, rgba(28, 29, 51, 0.55), rgba(14, 15, 30, 0.5));
+  --bg: #0d0a1c;            /* roxo quase preto */
+  --bg-deep: #070512;
+  --panel-bg: linear-gradient(180deg, rgba(37, 28, 72, 0.5), rgba(18, 13, 38, 0.62));
 
-  --text: #ece8e4;          /* marfim frio */
-  --text-soft: #b7b9cf;     /* azul-cinza claro */
-  --muted: #8f93b2;
-  --faint: #5f6386;         /* só decoração, nunca texto essencial */
+  --text: #f4e6d6;          /* marfim quente */
+  --text-soft: #c9bfd9;     /* lavanda acinzentada */
+  --muted: #9d93b8;
+  --faint: #5d5480;         /* só decoração, nunca texto essencial */
 
-  --lunar: #a3a6f0;         /* lavanda / azul lunar dos contornos */
-  --lunar-soft: #c8caf4;
-  --wine-soft: #c06b83;     /* bordô legível em texto pequeno */
-  --gold: #d7c29a;          /* dourado: raro (foco na página do Nocturne) */
+  --violet: #4a3a86;
+  --lavender: #b3a3e6;
+  --lavender-soft: #d6ccf4;
+  --wine: #8e1f47;          /* fitas: acento secundário */
+  --rose: #e2a8b0;          /* rosado legível em texto pequeno */
+  --gold: #f0c98f;          /* dourado claro: raro */
 
-  --line: rgba(200, 202, 244, 0.12);
-  --line-strong: rgba(200, 202, 244, 0.26);
+  --line: rgba(179, 163, 230, 0.16);
+  --line-strong: rgba(179, 163, 230, 0.34);
 
   /* Nomes antigos, ainda usados por nocturne.css */
-  --accent: var(--lunar);
+  --accent: var(--lavender);
   --border: var(--line);
 
   --max-width: 1120px;
@@ -87,6 +102,7 @@
 
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-body: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
 }
 
 
@@ -110,9 +126,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background-color: var(--bg);
-  /* Um único brilho lunar atrás do hero; o resto é navy liso. */
+  /* Um único brilho violeta atrás do hero; o resto é roxo-preto liso. */
   background-image:
-    radial-gradient(ellipse 56rem 38rem at 24% 6%, rgba(110, 98, 144, 0.16), transparent 70%),
+    radial-gradient(ellipse 58rem 40rem at 22% 6%, rgba(74, 58, 134, 0.3), transparent 70%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
   color: var(--text);
   font-family: var(--font-body);
@@ -141,14 +157,14 @@ button {
 }
 
 ::selection {
-  background: rgba(163, 166, 240, 0.28);
+  background: rgba(179, 163, 230, 0.3);
   color: var(--text);
 }
 
 /* Foco visível para quem navega pelo teclado. */
 a:focus-visible,
 button:focus-visible {
-  outline: 1px solid var(--lunar);
+  outline: 1px solid var(--lavender);
   outline-offset: 4px;
 }
 
@@ -169,17 +185,17 @@ button:focus-visible {
 }
 
 /* O divisor já separa as seções; não precisa de espaço dobrado. */
-.ornament + .block {
-  padding-top: clamp(1.75rem, 3.5vw, 2.75rem);
+.divider + .block {
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.block:has(+ .ornament) {
-  padding-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+.block:has(+ .divider) {
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 
 /* =========================================================
-   4. CÉU DE FUNDO — poucas estrelas, só piscando devagar
+   4. CÉU DE FUNDO — poucas estrelas quadradas, piscando devagar
    ========================================================= */
 
 .sky {
@@ -193,18 +209,17 @@ button:focus-visible {
   position: absolute;
   width: 2px;
   height: 2px;
-  border-radius: 50%;
-  background: var(--lunar-soft);
+  background: var(--lavender-soft);
   opacity: 0.3;
-  animation: twinkle 7s ease-in-out infinite alternate;
+  animation: twinkle 7s steps(4) infinite alternate;
 }
 
 .star-1 { top: 14%; left: 12%; }
-.star-2 { top: 26%; left: 76%; animation-delay: -2s; }
+.star-2 { top: 26%; left: 76%; width: 3px; height: 3px; animation-delay: -2s; }
 .star-3 { top: 55%; left: 90%; animation-delay: -4s; }
-.star-4 { top: 72%; left: 18%; animation-delay: -1s; animation-duration: 9s; }
+.star-4 { top: 72%; left: 18%; background: var(--rose); animation-delay: -1s; animation-duration: 9s; }
 .star-5 { top: 88%; left: 64%; animation-delay: -5s; }
-.star-6 { top: 40%; left: 5%; animation-delay: -3s; animation-duration: 10s; }
+.star-6 { top: 40%; left: 5%; width: 3px; height: 3px; animation-delay: -3s; animation-duration: 10s; }
 .star-7 { top: 64%; left: 48%; animation-delay: -6s; animation-duration: 8s; }
 
 
@@ -212,12 +227,21 @@ button:focus-visible {
    5. HEADER E NAVEGAÇÃO
    ========================================================= */
 
-/* O <svg> com os <symbol> fica escondido; a marca usa <use>. */
+/* O <svg> com os <symbol> fica escondido; os ícones usam <use>. */
 .svg-sprite {
   position: absolute;
   width: 0;
   height: 0;
   overflow: hidden;
+}
+
+/* Estrelinha de 7x7 "pixels": sempre nítida. */
+.px-star {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  fill: currentColor;
+  shape-rendering: crispEdges;
 }
 
 .site-header {
@@ -241,24 +265,8 @@ button:focus-visible {
 }
 
 .brand-mark {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 auto;
-  color: var(--lunar-soft);
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.25;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.brand-mark use {
-  vector-effect: non-scaling-stroke;
-}
-
-.icon-fill {
-  fill: currentColor;
-  stroke: none;
+  width: 28px;
+  flex: none;
 }
 
 .header-actions {
@@ -269,26 +277,22 @@ button:focus-visible {
 
 .nav {
   display: flex;
-  gap: 1.75rem;
+  gap: 1.6rem;
   color: var(--text-soft);
   font-size: 0.86rem;
 }
 
 .nav a {
-  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   padding-block: 0.35rem;
-  transition: color 180ms ease;
+  transition: color 160ms ease;
 }
 
-.nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 100%;
-  bottom: 0;
-  height: 1px;
-  background: var(--lunar);
-  transition: right 220ms ease;
+.nav .px-star {
+  color: var(--faint);
+  transition: color 160ms ease;
 }
 
 .nav a:hover,
@@ -296,9 +300,9 @@ button:focus-visible {
   color: var(--text);
 }
 
-.nav a:hover::after,
-.nav a:focus-visible::after {
-  right: 0;
+.nav a:hover .px-star,
+.nav a:focus-visible .px-star {
+  color: var(--lavender);
 }
 
 .language-switcher {
@@ -310,8 +314,8 @@ button:focus-visible {
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--faint);
+  font-family: var(--font-mono);
   font-size: 0.7rem;
-  letter-spacing: 0.1em;
 }
 
 .language-button {
@@ -337,8 +341,8 @@ button:focus-visible {
 
 /* =========================================================
    6. TIPOGRAFIA E RÓTULOS
-   Serif (Fraunces) só em títulos e nomes de projetos;
-   Manrope no resto.
+   Serif (Fraunces) em títulos e nomes de projetos, Manrope no
+   texto, JetBrains Mono só em rótulos curtos e técnicos.
    ========================================================= */
 
 h1,
@@ -354,13 +358,27 @@ h3 {
 }
 
 .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
   margin: 0 0 0.9rem;
-  color: var(--lunar);
-  font-family: var(--font-body);
+  color: var(--lavender);
+  font-family: var(--font-mono);
   font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+/* estrelinha de 5 "pixels" de 2px antes de cada sobretítulo */
+.eyebrow::before {
+  content: "";
+  width: 2px;
+  height: 2px;
+  margin-inline: 2px;
+  flex: none;
+  background: currentColor;
+  box-shadow: 0 -2px currentColor, 0 2px currentColor, -2px 0 currentColor, 2px 0 currentColor;
 }
 
 /* .section-head: página principal; .section-heading: Nocturne */
@@ -383,15 +401,15 @@ h3 {
   line-height: 1.75;
 }
 
-/* Rótulos pequenos em caixa alta: tipo do projeto e campos
-   das listas do Sobre e do Agora. */
+/* Rótulos técnicos: tipo do projeto e campos do Sobre e do Agora. */
 .kind,
 .about-facts dt,
 .now-list dt {
   color: var(--muted);
+  font-family: var(--font-mono);
   font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -400,22 +418,21 @@ h3 {
   align-items: center;
   gap: 0.5rem;
   color: var(--text-soft);
-  font-size: 0.76rem;
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
 }
 
-/* losango pequeno antes do status */
+/* um "pixel" quadrado antes do status */
 .status::before {
   content: "";
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   flex: none;
-  background: var(--lunar);
-  transform: rotate(45deg);
+  background: var(--lavender);
 }
 
 .status--writing::before {
-  background: var(--wine-soft);
+  background: var(--rose);
 }
 
 .status--done::before {
@@ -427,7 +444,7 @@ h3 {
   align-items: center;
   margin-top: 1rem;
   border-bottom: 1px solid transparent;
-  color: var(--lunar-soft);
+  color: var(--lavender-soft);
   font-size: 0.86rem;
   font-weight: 500;
   transition: color 160ms ease, border-color 160ms ease;
@@ -472,8 +489,8 @@ h3 {
 }
 
 .button-primary:hover {
-  border-color: var(--lunar-soft);
-  background: var(--lunar-soft);
+  border-color: var(--lavender-soft);
+  background: var(--lavender-soft);
 }
 
 .button-secondary {
@@ -482,7 +499,7 @@ h3 {
 }
 
 .button-secondary:hover {
-  border-color: var(--lunar);
+  border-color: var(--lavender);
 }
 
 
@@ -507,7 +524,8 @@ h3 {
 
 .hero-art {
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
+  object-fit: contain;
 }
 
 .hero-copy {
@@ -521,7 +539,7 @@ h3 {
 }
 
 .hero h1 em {
-  color: var(--lunar-soft);
+  color: var(--lavender-soft);
   font-style: italic;
   font-weight: 300;
 }
@@ -536,35 +554,38 @@ h3 {
 
 
 /* =========================================================
-   9. DIVISOR ORNAMENTAL (PNG)
+   9. DIVISORES (pixel art)
+   Quatro, cada um num ponto: lua (hero → Sobre), terminal
+   (→ Projetos), ampulheta (→ Outras áreas) e o discreto
+   antes do rodapé.
    ========================================================= */
 
-.ornament {
+.divider {
   display: flex;
   justify-content: center;
   pointer-events: none;
   user-select: none;
 }
 
-.ornament img {
-  width: min(88%, 500px);
-  opacity: 0.9;
+.divider img {
+  width: 100%;
+  max-width: 560px;
+}
+
+.divider--quiet img {
+  max-width: 420px;
+  opacity: 0.8;
 }
 
 
 /* =========================================================
-   10. SOBRE E MOLDURA CELESTIAL
+   10. SOBRE E MOLDURA PIXEL
    A moldura foi fatiada em topo / meio / base. Topo e base
-   mantêm a proporção original; entre eles só a barra lateral
-   lisa se repete, então luas e estrelas nunca se deformam.
-   Medidas em cqw = % da largura da própria moldura.
+   mantêm a proporção original; entre eles só uma faixa lisa
+   da barra lateral se repete, então nada se deforma.
+   Medidas em cqw = % da largura da própria moldura
+   (a imagem original tem 1933px de largura).
    ========================================================= */
-
-/* Sem divisores em volta do Sobre: só espaço. */
-.about {
-  padding-top: clamp(1.5rem, 3.5vw, 2.75rem);
-  padding-bottom: clamp(1rem, 2vw, 1.5rem);
-}
 
 .frame {
   container-type: inline-size;
@@ -581,11 +602,12 @@ h3 {
 .frame-body {
   position: relative;
   display: flow-root;
-  min-height: 6.24cqw;
+  min-height: 16.04cqw;              /* altura da fatia do meio */
   margin-block: -1px;
-  background: url("assets/ornaments/frame-fill.png") center top / 100% auto repeat-y;
+  background: url("assets/frames/frame-code-fill.webp") center top / 100% auto repeat-y;
 }
 
+/* terminais laterais e losangos, sempre no meio da altura */
 .frame-middle {
   position: absolute;
   left: 0;
@@ -596,13 +618,18 @@ h3 {
   user-select: none;
 }
 
-/* O conteúdo invade a parte vazia do topo e da base, mas para
-   antes dos cantos, das fitas e dos medalhões. */
+/* O texto fica entre os terminais laterais (que vão até ~7,5%
+   da largura) e entra só um pouco no topo e na base. */
 .frame-content {
   position: relative;
   z-index: 1;
-  margin: -5.77cqw 0 -7.23cqw;
-  padding-inline: max(8.6cqw, 1.6rem);
+  margin: -0.78cqw 0 -1.55cqw;
+  padding-inline: max(10cqw, 1.6rem);
+}
+
+/* Sem divisor depois do Sobre o espaço já vem do próximo divisor. */
+.about {
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
 .about-grid {
@@ -623,7 +650,7 @@ h3 {
 
 .about-facts > div {
   padding: 0.75rem 0;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px dashed var(--line);
 }
 
 .about-facts > div:first-child {
@@ -636,7 +663,7 @@ h3 {
 
 .about-facts dt {
   margin-bottom: 0.2rem;
-  color: var(--wine-soft);
+  color: var(--rose);
 }
 
 .about-facts dd {
@@ -658,8 +685,8 @@ h3 {
 
 /* =========================================================
    11. CARDS (Projetos e Outras áreas)
-   Ícone e status em cima, rótulo, nome, uma frase e o link
-   no pé do card.
+   Painel de canto reto com quatro "rebites" de pixel nos
+   cantos; cada projeto tem o seu ícone pixel art.
    ========================================================= */
 
 .projects .section-head,
@@ -674,32 +701,26 @@ h3 {
 }
 
 .project-card {
+  --corner: rgba(179, 163, 230, 0.75);
+
   position: relative;
-  isolation: isolate;
   display: flex;
   flex-direction: column;
   min-height: 330px;
   padding: 1.6rem;
   border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--panel-bg);
+  background:
+    linear-gradient(var(--corner), var(--corner)) left 2px top 2px / 4px 4px no-repeat,
+    linear-gradient(var(--corner), var(--corner)) right 2px top 2px / 4px 4px no-repeat,
+    linear-gradient(var(--corner), var(--corner)) left 2px bottom 2px / 4px 4px no-repeat,
+    linear-gradient(var(--corner), var(--corner)) right 2px bottom 2px / 4px 4px no-repeat,
+    var(--panel-bg);
   transition: transform 180ms ease, border-color 180ms ease;
-}
-
-/* moldura interna fina */
-.project-card::before {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  z-index: -1;
-  border: 1px solid rgba(200, 202, 244, 0.05);
-  border-radius: 6px;
-  pointer-events: none;
 }
 
 .project-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(163, 166, 240, 0.3);
+  border-color: var(--line-strong);
 }
 
 .project-card:focus-within {
@@ -714,11 +735,11 @@ h3 {
 }
 
 .card-icon {
-  width: 44px;
+  width: 56px;
 }
 
 .project-card .kind {
-  margin: 1.6rem 0 0;
+  margin: 1.4rem 0 0;
 }
 
 .card-title {
@@ -748,8 +769,9 @@ h3 {
 }
 
 .card-note {
-  color: var(--wine-soft);
-  font-size: 0.8rem;
+  color: var(--rose);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
 }
 
 .card-links {
@@ -763,9 +785,9 @@ h3 {
   margin-top: 0;
 }
 
-/* Fragmentos só se diferencia pela tipografia e por um toque de bordô. */
-.project-card--fragment::before {
-  border-color: rgba(192, 107, 131, 0.14);
+/* Fragmentos: cantos em rosa e tipografia de livro. */
+.project-card--fragment {
+  --corner: rgba(226, 168, 176, 0.8);
 }
 
 .project-card--fragment .card-title {
@@ -793,41 +815,30 @@ h3 {
 }
 
 .now-sticker {
-  width: 112px;
+  width: 120px;
   flex: none;
-  margin-bottom: -0.35rem;
+  margin-bottom: -0.5rem;
 }
 
+/* mesmo painel dos cards */
 .now-list {
-  position: relative;
-  overflow: hidden;
+  --corner: rgba(179, 163, 230, 0.75);
+
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
   margin: 1.5rem 0 0;
   padding: 1.6rem;
   border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--panel-bg);
-}
-
-/* círculo apagado no canto do painel */
-.now-list::after {
-  content: "";
-  position: absolute;
-  right: 1.75rem;
-  bottom: -2.6rem;
-  width: 7rem;
-  height: 7rem;
-  border: 4px solid rgba(200, 202, 244, 0.05);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(200, 202, 244, 0.07) 0 9px, transparent 10px);
-  pointer-events: none;
+  background:
+    linear-gradient(var(--corner), var(--corner)) left 2px top 2px / 4px 4px no-repeat,
+    linear-gradient(var(--corner), var(--corner)) right 2px top 2px / 4px 4px no-repeat,
+    linear-gradient(var(--corner), var(--corner)) left 2px bottom 2px / 4px 4px no-repeat,
+    linear-gradient(var(--corner), var(--corner)) right 2px bottom 2px / 4px 4px no-repeat,
+    var(--panel-bg);
 }
 
 .now-list > div {
-  position: relative;
-  z-index: 1;
   min-width: 0;
 }
 
@@ -837,14 +848,14 @@ h3 {
   font-size: 0.98rem;
 }
 
+/* pixel quadrado de "ligado" */
 .signal-dot {
   display: inline-block;
   width: 6px;
   height: 6px;
-  margin-right: 0.45rem;
-  border-radius: 50%;
-  background: var(--lunar);
-  vertical-align: 0.1em;
+  margin-right: 0.5rem;
+  background: var(--lavender);
+  vertical-align: 0.12em;
 }
 
 
@@ -857,15 +868,13 @@ h3 {
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem 1.75rem;
-  margin-top: 1rem;
-  padding: 2.25rem 0 3rem;
-  border-top: 1px solid var(--line);
+  padding: 1.5rem 0 3rem;
   color: var(--muted);
   font-size: 0.82rem;
 }
 
 .footer-sticker {
-  width: 56px;
+  width: 64px;
   flex: none;
 }
 
@@ -905,7 +914,7 @@ h3 {
 
 @keyframes twinkle {
   from { opacity: 0.12; }
-  to { opacity: 0.5; }
+  to { opacity: 0.55; }
 }
 
 @keyframes rise {
@@ -946,7 +955,7 @@ h3 {
   }
 
   .hero-art {
-    max-width: 440px;
+    max-width: 460px;
   }
 
   .hero-copy {
@@ -1001,7 +1010,7 @@ h3 {
   .nav {
     order: 3;
     width: 100%;
-    gap: 1.5rem;
+    gap: 1.3rem;
     margin-top: 0.75rem;
     padding: 0.35rem 0;
     border-top: 1px solid var(--line);
@@ -1022,16 +1031,21 @@ h3 {
     flex: 1 1 auto;
   }
 
+  /* Na tela estreita a moldura afina: o texto ganha mais espaço. */
+  .frame-content {
+    padding-inline: max(9cqw, 1.4rem);
+  }
+
   .project-card {
     padding: 1.3rem;
   }
 
   .card-icon {
-    width: 40px;
+    width: 48px;
   }
 
   .project-card .kind {
-    margin-top: 1.25rem;
+    margin-top: 1.2rem;
   }
 
   .now-list {
@@ -1039,7 +1053,7 @@ h3 {
   }
 
   .now-sticker {
-    width: 84px;
+    width: 92px;
   }
 
   .footer {
@@ -1047,6 +1061,6 @@ h3 {
   }
 
   .footer-sticker {
-    width: 48px;
+    width: 56px;
   }
 }
